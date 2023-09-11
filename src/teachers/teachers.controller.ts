@@ -37,6 +37,7 @@ export class TeachersController {
     }
 
     @Put("/:id")
+    @UsePipes(ValidationPipe)
     async updateData(@Param("id") id: string, @Body() updateTeacherDto: UpdateTeacherDto, @Res() res: Response) {
         const responseData = await this.teachersService.updateData(id, updateTeacherDto)
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))

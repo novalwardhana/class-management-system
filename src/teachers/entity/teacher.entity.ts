@@ -6,7 +6,7 @@ export class Teacher extends BaseEntity {
     @ObjectIdColumn()
     _id: ObjectId
 
-    @Column()
+    @Column({ unique: true })
     teacher_id: string
 
     @Column({ unique: true })
