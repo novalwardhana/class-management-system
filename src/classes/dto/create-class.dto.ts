@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsDate, IsUUID, IsEnum } from "class-validator";
+import { IsEmail, IsNotEmpty, IsDate, IsUUID, IsEnum, IsEmpty } from "class-validator";
 import { Type } from 'class-transformer';
 import { Is24HourTime } from "./time.dto";
 import { ClassStatusEnum } from "../entity/class-status-enum.entity";
@@ -28,5 +28,8 @@ export class CreateClassDto {
     @IsNotEmpty()
     @Is24HourTime()
     end_time: string
+
+    @IsEmpty()
+    duration: number
 
 }

@@ -24,14 +24,8 @@ export class ClassRepository extends Repository<Class> {
 
     async createData(createClassDto: CreateClassDto, teacher: Teacher, subject: Subject): Promise<Class> {
         
-        const { title, teacher_id, subject_id, date, start_time, end_time } = createClassDto
-        const parseStartTime = moment(start_time, "HH:mm")
-        const parseEndTime = moment(end_time, "HH:mm")
-        const timeDuration = parseEndTime.diff(parseStartTime, "minutes")
-        if (timeDuration < 0) {
-            throw new InternalServerErrorException("Start time and end time is not valid")
-        }
-
+        const { title, teacher_id, subject_id, date, start_time, end_time, duration } = createClassDto
+       
         const classData = this.create()
         classData.class_id = uuidv4()
         classData.title = title
@@ -42,7 +36,7 @@ export class ClassRepository extends Repository<Class> {
         classData.date = date
         classData.start_time = start_time
         classData.end_time = end_time
-        classData.duration = timeDuration
+        classData.duration = duration
         classData.status = ClassStatusEnum.active
     
         try {

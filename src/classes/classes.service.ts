@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import * as moment from "moment";
 import { ClassRepository } from './repository/class.repository';
 import { TeacherRepository } from '../teachers/repository/teacher.repository';
 import { SubjectRepository } from '../subjects/repository/subject.repository';
@@ -48,6 +49,14 @@ export class ClassesService {
             if (!subjectData) {
                 throw new ErrorResponse(`Subject with id: ${createClassDto.subject_id} is not found`)
             }
+
+            const parseStartTime = moment(createClassDto.start_time, "HH:mm")
+            const parseEndTime = moment(createClassDto.end_time, "HH:mm")
+            const duration = parseEndTime.diff(parseStartTime, "minutes")
+            if (duration < 0) {
+                throw new ErrorResponse("Start time and end time is not valid")
+            }
+            createClassDto.duration = duration
             
             const classData = await this.classRepository.createData(createClassDto, teacherData, subjectData)
             return classData
