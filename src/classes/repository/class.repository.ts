@@ -24,14 +24,12 @@ export class ClassRepository extends Repository<Class> {
 
     async createData(createClassDto: CreateClassDto, teacher: Teacher, subject: Subject): Promise<Class> {
         
-        const { title, teacher_id, subject_id, date, start_time, end_time, duration } = createClassDto
+        const { title, date, start_time, end_time, duration } = createClassDto
        
         const classData = this.create()
         classData.class_id = uuidv4()
         classData.title = title
-        classData.teacher_id = teacher_id
         classData.teacher = teacher
-        classData.subject_id = subject_id
         classData.subject = subject
         classData.date = date
         classData.start_time = start_time

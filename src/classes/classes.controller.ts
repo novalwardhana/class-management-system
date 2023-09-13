@@ -1,8 +1,9 @@
-import { Controller, Post, Get, Delete, Param, Body, UsePipes, ValidationPipe, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Get, Delete, Put, Param, Body, UsePipes, ValidationPipe, Res, HttpStatus } from '@nestjs/common';
 import { ClassesService } from './classes.service';
 import { CreateClassDto } from "./dto/create-class.dto";
 import { Response } from 'express';
 import { SuccessResponse } from "./response/success.response"
+import { UpdateClassDto } from './dto/update-class.dto';
 
 @Controller('classes')
 export class ClassesController {
@@ -32,6 +33,13 @@ export class ClassesController {
     async deleteData(@Param("id") id: string, @Res() res: Response) {
         await this.classesService.deleteData(id)
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, `Success delete class data with uuid: ${id}`, null))
+    }
+
+    @Put("/:id")
+    @UsePipes(ValidationPipe)
+    async updateData(@Param("id") id: string, @Body() updateClassDto: UpdateClassDto, @Res() res: Response) {
+        const responseData = await this.classesService.updateData(id, updateClassDto)
+        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
     }
 
 }
