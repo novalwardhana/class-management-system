@@ -67,4 +67,16 @@ export class ClassesService {
         return null
     }
 
+    async deleteData(id: string): Promise<void> {
+        try {
+            const data = await this.classRepository.findOneBy({'class_id': id})
+            if (!data) {
+                throw new ErrorResponse("Data not found")
+            }
+            await this.classRepository.delete({class_id: id})
+        } catch(e) {
+            throw new ErrorResponse(e.message)
+        }
+    }
+
 }
