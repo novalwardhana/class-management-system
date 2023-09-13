@@ -1,5 +1,5 @@
 export enum SubjectLevelEnum {
     "beginner",
     "intermediate",
-    "export"
+    "expert"
 }

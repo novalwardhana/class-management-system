@@ -1,5 +1,6 @@
 import { IsNotEmpty } from "class-validator";
-import { BaseEntity, Column, Entity, ObjectIdColumn, ObjectId } from "typeorm";
+import { BaseEntity, Column, Entity, ObjectIdColumn, ObjectId, OneToMany } from "typeorm";
+import { Class } from "../../classes/entity/class.entity"
 
 @Entity()
 export class Teacher extends BaseEntity {
@@ -32,4 +33,7 @@ export class Teacher extends BaseEntity {
     @Column()
     @IsNotEmpty()
     address: string
+
+    @OneToMany(() => Class, (classData) => classData.teacher)
+    classes: Class[]
 }
