@@ -17,17 +17,9 @@ export class Class extends BaseEntity {
     @IsNotEmpty()
     title: string
 
-    // @Column('uuid')
-    // @IsNotEmpty()
-    // teacher_id: string
-
     @Column('json')    
     @ManyToOne(() => Teacher, (teacher) => teacher.classes)
     teacher: Teacher
-
-    // @Column('uuid')
-    // @IsNotEmpty()
-    // subject_id: string
 
     @Column('json')    
     @ManyToOne(() => Subject, (subject) => subject.classes)

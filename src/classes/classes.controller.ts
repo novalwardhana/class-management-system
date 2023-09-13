@@ -3,7 +3,11 @@ import { ClassesService } from './classes.service';
 import { CreateClassDto } from "./dto/create-class.dto";
 import { Response } from 'express';
 import { SuccessResponse } from "./response/success.response"
-import { UpdateClassDto } from './dto/update-class.dto';
+import { ErrorResponse } from './response/error.response'
+import { UpdateClassDto } from './dto/update-class.dto'
+import { ClassStatusEnum } from './entity/class-status-enum.entity'
+import { Class } from './entity/class.entity';
+
 
 @Controller('classes')
 export class ClassesController {
@@ -39,6 +43,37 @@ export class ClassesController {
     @UsePipes(ValidationPipe)
     async updateData(@Param("id") id: string, @Body() updateClassDto: UpdateClassDto, @Res() res: Response) {
         const responseData = await this.classesService.updateData(id, updateClassDto)
+        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
+    }
+
+    @Put("/:status/:id")
+    async setStatus(@Param("status") status: string, @Param("id") id: string, @Res() res: Response) {
+        
+        let newStatus: string
+        let responseData: Class
+        switch (status) {
+            case "set-active": 
+            {
+                newStatus = ClassStatusEnum.active
+                responseData = await this.classesService.setStatus(id, newStatus)
+                break
+            }
+            case "set-archived": 
+            {
+                newStatus = ClassStatusEnum.archived
+                responseData = await this.classesService.setStatus(id, newStatus)
+                break
+            }
+            case "unassigned-teacher": 
+            {
+                responseData = await this.classesService.unassignedTeacher(id)
+                break
+            }
+            default: {
+                throw new ErrorResponse("set class status is not valid")
+            }
+        }
+
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
     }
 

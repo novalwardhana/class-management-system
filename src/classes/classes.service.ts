@@ -126,4 +126,39 @@ export class ClassesService {
             throw new ErrorResponse(e.message)
         }
     }
+
+    async setStatus(id: string, status: string): Promise<Class> {
+        
+        try {
+
+            const classData = await this.classRepository.findOneBy({'class_id': id})
+            if (!classData) {
+                throw new ErrorResponse("Data class not found")
+            }
+            classData.status = status
+
+            await classData.save()
+            return classData
+
+        } catch(e) {
+            throw new ErrorResponse(e.message)
+        }
+    }
+
+    async unassignedTeacher(id: string): Promise<Class> {
+        try {
+
+            const classData = await this.classRepository.findOneBy({'class_id': id})
+            if (!classData) {
+                throw new ErrorResponse("Data class not found")
+            }
+            classData.teacher = null
+
+            await classData.save()
+            return classData
+
+        } catch(e) {
+            throw new ErrorResponse(e.message)
+        }
+    }
 }   
