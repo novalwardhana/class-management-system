@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { SubjectRepository } from './repository/subject.repository';
+import { ClassRepository } from '../classes/repository/class.repository'
 import { Subject } from './entity/subject.entity';
 import { CreateSubjectDto } from "./dto/create-subject.dto";
 import { UpdateSubjectDto } from "./dto/update-subject.dto";
@@ -8,7 +9,10 @@ import { ErrorResponse } from "./response/error.response"
 @Injectable()
 export class SubjectsService {
 
-    constructor(private readonly subjectRepository: SubjectRepository) {}
+    constructor(
+        private readonly subjectRepository: SubjectRepository,
+        private readonly classRepository: ClassRepository,
+    ) {}
 
     async getDatas(): Promise<Subject[]> {
         try {
@@ -45,6 +49,13 @@ export class SubjectsService {
             if (!data) {
                 throw new ErrorResponse("Data not found")
             }
+
+            
+            const countClassData = await this.classRepository.countBy({'reference_subject_id': id})
+            if (countClassData > 0) {
+                throw new ErrorResponse("Cannot delete subject data, already used in class")
+            }
+
             await this.subjectRepository.delete({subject_id: id})
         } catch(e) {
             throw new ErrorResponse(e.message)
