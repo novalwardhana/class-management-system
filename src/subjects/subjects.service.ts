@@ -73,7 +73,10 @@ export class SubjectsService {
             data.name = name
             data.description = description
             data.level = level
+            
             await data.save()
+            await this.classRepository.update({reference_subject_id: id}, {'subject': data})
+
             return updateSubjectDto
             
         } catch(e) {
