@@ -76,7 +76,10 @@ export class TeachersService {
             data.email = email
             data.phone_number = phone_number
             data.address = address
+
             await data.save()
+            await this.classRepository.update({reference_teacher_id: id}, {'teacher': data})
+
             return updateTeacherDto
             
         } catch(e) {
