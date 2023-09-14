@@ -49,4 +49,10 @@ export class Class extends BaseEntity {
     @IsNotEmpty()
     status: string
 
+    @Column()
+    reference_teacher_id: string
+
+    @Column()
+    reference_subject_id: string
+
 }

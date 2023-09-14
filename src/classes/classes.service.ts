@@ -119,6 +119,8 @@ export class ClassesService {
             classData.end_time = end_time
             classData.duration = duration
             classData.status = ClassStatusEnum.active
+            classData.reference_teacher_id = teacher_id
+            classData.reference_subject_id = subject_id
 
             await classData.save()
             return classData
@@ -153,6 +155,7 @@ export class ClassesService {
                 throw new ErrorResponse("Data class not found")
             }
             classData.teacher = null
+            classData.reference_teacher_id = null
 
             await classData.save()
             return classData

@@ -24,7 +24,7 @@ export class ClassRepository extends Repository<Class> {
 
     async createData(createClassDto: CreateClassDto, teacher: Teacher, subject: Subject): Promise<Class> {
         
-        const { title, date, start_time, end_time, duration } = createClassDto
+        const { title, date, start_time, end_time, duration, teacher_id, subject_id } = createClassDto
        
         const classData = this.create()
         classData.class_id = uuidv4()
@@ -36,6 +36,8 @@ export class ClassRepository extends Repository<Class> {
         classData.end_time = end_time
         classData.duration = duration
         classData.status = ClassStatusEnum.active
+        classData.reference_teacher_id = teacher_id
+        classData.reference_subject_id = subject_id
     
         try {
             await classData.save()
