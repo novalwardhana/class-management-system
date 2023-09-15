@@ -17,8 +17,20 @@ export class ClassRepository extends Repository<Class> {
         super(Class, dataSource.createEntityManager())
     }
 
-    async getDatas(): Promise<Class[]> {
-        const result = await this.find()
+    async getTotalDatas(): Promise<number> {
+        const count = await this.count()
+        return count
+    } 
+
+    async getDatas(limit: number, offset: number): Promise<Class[]> {
+        const result = await this.find({
+            where: {},
+            order: {
+                created_at: "DESC"
+            },
+            take: limit,
+            skip: offset,
+        })
         return result
     }
 
@@ -38,6 +50,8 @@ export class ClassRepository extends Repository<Class> {
         classData.status = ClassStatusEnum.active
         classData.reference_teacher_id = teacher_id
         classData.reference_subject_id = subject_id
+        classData.created_at = moment().add(7, 'hours').toDate()
+        classData.updated_at = moment().add(7, 'hours').toDate()
     
         try {
             await classData.save()

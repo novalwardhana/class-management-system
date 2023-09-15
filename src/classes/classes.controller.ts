@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Delete, Put, Param, Body, UsePipes, ValidationPipe, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Get, Delete, Put, Param, Body, UsePipes, ValidationPipe, Res, HttpStatus, Query } from '@nestjs/common';
 import { ClassesService } from './classes.service';
 import { CreateClassDto } from "./dto/create-class.dto";
 import { Response } from 'express';
@@ -7,6 +7,7 @@ import { ErrorResponse } from './response/error.response'
 import { UpdateClassDto } from './dto/update-class.dto'
 import { ClassStatusEnum } from './entity/class-status-enum.entity'
 import { Class } from './entity/class.entity';
+import { FilterClassDto } from './dto/filter-class.dto';
 
 
 @Controller('classes')
@@ -15,8 +16,9 @@ export class ClassesController {
     constructor(private readonly classesService: ClassesService) {}
 
     @Get()
-    async getDatas(@Res() res: Response) {
-        const responseData = await this.classesService.getDatas()
+    @UsePipes(ValidationPipe)
+    async getDatas(@Query() filterClassDto: FilterClassDto, @Res() res: Response) {
+        const responseData = await this.classesService.getDatas(filterClassDto)
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
     }
 

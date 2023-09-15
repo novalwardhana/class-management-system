@@ -8,6 +8,7 @@ import { CreateClassDto } from './dto/create-class.dto';
 import { UpdateClassDto } from './dto/update-class.dto';
 import { ErrorResponse } from "./response/error.response"
 import { ClassStatusEnum } from './entity/class-status-enum.entity';
+import { FilterClassDto } from './dto/filter-class.dto';
 
 @Injectable()
 export class ClassesService {
@@ -18,9 +19,24 @@ export class ClassesService {
         private readonly subjectRepository: SubjectRepository,
     ) {}
 
-    async getDatas(): Promise<Class[]> {
+    async getDatas(filterClassDto: FilterClassDto): Promise<any> {
         try {
-            return await this.classRepository.getDatas()
+
+            const page = parseInt(filterClassDto.page)
+            const limit = parseInt(filterClassDto.limit)
+            const offset = (page - 1) * limit
+
+            const total = await this.teacherRepository.getTotalDatas()
+            const total_page = Math.ceil(total/limit)
+
+            const classDatas = await this.classRepository.getDatas(limit, offset)
+            return {
+                page: page,
+                per_page: limit,
+                total_page: total_page,
+                total_data: total,
+                data: classDatas
+            }
         } catch(e) {
             throw new ErrorResponse(e.message)
         }
@@ -121,6 +137,7 @@ export class ClassesService {
             classData.status = ClassStatusEnum.active
             classData.reference_teacher_id = teacher_id
             classData.reference_subject_id = subject_id
+            classData.updated_at = moment().add(7, 'hours').toDate()
 
             await classData.save()
             return classData

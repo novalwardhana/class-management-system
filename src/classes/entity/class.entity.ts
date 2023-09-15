@@ -3,6 +3,7 @@ import { BaseEntity, Column, Entity, ObjectIdColumn, ObjectId, ManyToOne } from 
 import { ClassStatusEnum } from "./class-status-enum.entity";
 import { Teacher } from "../../teachers/entity/teacher.entity";
 import { Subject } from "../../subjects/entity/subject.entity";
+import { DateTime } from 'luxon';
 
 @Entity()
 export class Class extends BaseEntity {
@@ -54,5 +55,11 @@ export class Class extends BaseEntity {
 
     @Column()
     reference_subject_id: string
+
+    @Column({ type: 'timestamp' })
+    created_at: DateTime
+  
+    @Column({ type: 'timestamp' })
+    updated_at: DateTime
 
 }
