@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Delete, Put, UsePipes, ValidationPipe, Body, Param, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Put, UsePipes, ValidationPipe, Body, Param, Res, HttpStatus, Query } from '@nestjs/common';
 import { SubjectsService } from './subjects.service';
 import { CreateSubjectDto } from "./dto/create-subject.dto";
 import { UpdateSubjectDto } from "./dto/update-subject.dto";
 import { Response } from 'express';
 import { SuccessResponse } from "./response/success.response"
+import { FilterSubjectDto } from './dto/filter-subject.dto';
 
 @Controller('subjects')
 export class SubjectsController {
@@ -11,8 +12,9 @@ export class SubjectsController {
     constructor(private readonly subjectsService: SubjectsService) {}
 
     @Get()
-    async getDatas(@Res() res: Response) {
-        const responseData = await this.subjectsService.getDatas()
+    @UsePipes(ValidationPipe)
+    async getDatas(@Query() filterSubjectDto: FilterSubjectDto, @Res() res: Response) {
+        const responseData = await this.subjectsService.getDatas(filterSubjectDto)
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
     }
 

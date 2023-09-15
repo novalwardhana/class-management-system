@@ -5,6 +5,8 @@ import { Subject } from './entity/subject.entity';
 import { CreateSubjectDto } from "./dto/create-subject.dto";
 import { UpdateSubjectDto } from "./dto/update-subject.dto";
 import { ErrorResponse } from "./response/error.response"
+import * as moment from "moment-timezone"
+import { FilterSubjectDto } from './dto/filter-subject.dto';
 
 @Injectable()
 export class SubjectsService {
@@ -14,9 +16,24 @@ export class SubjectsService {
         private readonly classRepository: ClassRepository,
     ) {}
 
-    async getDatas(): Promise<Subject[]> {
+    async getDatas(filterSubjectDto: FilterSubjectDto): Promise<any> {
         try {
-            return await this.subjectRepository.getDatas()
+
+            const page = parseInt(filterSubjectDto.page)
+            const limit = parseInt(filterSubjectDto.limit)
+            const offset = (page - 1) * limit
+
+            const total = await this.subjectRepository.getTotalDatas()
+            const total_page = Math.ceil(total/limit)
+
+            const subjectDatas = await this.subjectRepository.getDatas(limit, offset)
+            return {
+                page: page,
+                per_page: limit,
+                total_page: total_page,
+                total_data: total,
+                data: subjectDatas
+            }
         } catch(e) {
             throw new ErrorResponse(e.message)
         }
@@ -73,7 +90,8 @@ export class SubjectsService {
             data.name = name
             data.description = description
             data.level = level
-            
+            data.updated_at = moment().add(7, 'hours').toDate()
+
             await data.save()
             await this.classRepository.update({reference_subject_id: id}, {'subject': data})
 
