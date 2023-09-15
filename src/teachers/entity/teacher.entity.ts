@@ -1,6 +1,7 @@
 import { IsNotEmpty } from "class-validator";
 import { BaseEntity, Column, Entity, ObjectIdColumn, ObjectId, OneToMany } from "typeorm";
 import { Class } from "../../classes/entity/class.entity"
+import { DateTime } from 'luxon';
 
 @Entity()
 export class Teacher extends BaseEntity {
@@ -33,6 +34,12 @@ export class Teacher extends BaseEntity {
     @Column()
     @IsNotEmpty()
     address: string
+
+    @Column({ type: 'timestamp' })
+    created_at: DateTime
+  
+    @Column({ type: 'timestamp' })
+    updated_at: DateTime
 
     @OneToMany(() => Class, (classData) => classData.teacher)
     classes: Class[]

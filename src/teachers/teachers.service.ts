@@ -5,6 +5,8 @@ import { Teacher } from './entity/teacher.entity';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
 import { ErrorResponse } from "./response/error-response.interface"
+import { FilterTeacherDto } from './dto/filter-teacher.dto'
+import * as moment from "moment-timezone"
 
 @Injectable()
 export class TeachersService {
@@ -14,9 +16,24 @@ export class TeachersService {
         private readonly classRepository: ClassRepository,
     ) {}
 
-    async getDatas(): Promise<Teacher[]> {
+    async getDatas(filterTeacherDto: FilterTeacherDto): Promise<any> {
         try {
-            return await this.teacherRepository.getDatas()
+
+            const page = parseInt(filterTeacherDto.page)
+            const limit = parseInt(filterTeacherDto.limit)
+            const offset = (page - 1) * limit
+
+            const total = await this.teacherRepository.getTotalDatas()
+            const total_page = Math.ceil(total/limit)
+
+            const teacherDatas = await this.teacherRepository.getDatas(limit, offset)
+            return {
+                page: page,
+                per_page: limit,
+                total_page: total_page,
+                total_data: total,
+                data: teacherDatas
+            }
         } catch(e) {
             throw new ErrorResponse(e.message)
         }
@@ -76,6 +93,7 @@ export class TeachersService {
             data.email = email
             data.phone_number = phone_number
             data.address = address
+            data.updated_at = moment().add(7, 'hours').toDate()
 
             await data.save()
             await this.classRepository.update({reference_teacher_id: id}, {'teacher': data})

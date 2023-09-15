@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Delete, Put, UsePipes, ValidationPipe, Body, Param, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Delete, Put, UsePipes, ValidationPipe, Body, Param, Res, HttpStatus, Query } from '@nestjs/common';
 import { TeachersService } from './teachers.service';
 import { CreateTeacherDto } from "./dto/create-teacher.dto";
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
+import { FilterTeacherDto } from './dto/filter-teacher.dto';
 import { Response } from 'express';
 import { SuccessResponse } from "./response/success-response.interface"
 
@@ -12,8 +13,9 @@ export class TeachersController {
     constructor(private readonly teachersService: TeachersService) {}
 
     @Get()
-    async getDatas(@Res() res: Response) {
-        const responseData = await this.teachersService.getDatas()
+    @UsePipes(ValidationPipe)
+    async getDatas(@Query() filterTeacherDto: FilterTeacherDto, @Res() res: Response) {
+        const responseData = await this.teachersService.getDatas(filterTeacherDto)
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
     }
 

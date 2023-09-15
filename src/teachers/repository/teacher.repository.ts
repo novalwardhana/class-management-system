@@ -1,8 +1,11 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
-import { Repository, DataSource } from "typeorm";
+import { Repository, DataSource, Like, ILike } from "typeorm";
 import { Teacher } from "../entity/teacher.entity";
 import { CreateTeacherDto } from "../dto/create-teacher.dto";
 import { v4 as uuidv4 } from "uuid"
+import * as moment from "moment-timezone"
+import { FilterTeacherDto } from "../dto/filter-teacher.dto";
+import { fileURLToPath } from "url";
 
 @Injectable()
 export class TeacherRepository extends Repository<Teacher> {
@@ -11,9 +14,22 @@ export class TeacherRepository extends Repository<Teacher> {
         super(Teacher, dataSource.createEntityManager())
     }
 
-    async getDatas(): Promise<Teacher[]> {
-        const result = await this.find()
-        return result
+    async getTotalDatas(): Promise<number> {
+        const count = await this.count()
+        return count
+    } 
+
+    async getDatas(limit: number, offset: number): Promise<Teacher[]> {
+
+        const query = await this.find({
+            where: {},
+            order: {
+                created_at: "DESC"
+            },
+            take: limit,
+            skip: offset,
+        })
+        return query
     }
 
     async createData(createTeacherDto: CreateTeacherDto): Promise<void> {
@@ -26,6 +42,8 @@ export class TeacherRepository extends Repository<Teacher> {
         teacher.email = email
         teacher.phone_number = phone_number
         teacher.address = address
+        teacher.created_at = moment().add(7, 'hours').toDate()
+        teacher.updated_at = moment().add(7, 'hours').toDate()
 
         try {
             await teacher.save()
