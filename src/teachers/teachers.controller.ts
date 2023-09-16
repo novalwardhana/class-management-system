@@ -7,10 +7,10 @@ import { Response } from 'express';
 import { SuccessResponse } from "./response/success-response.interface"
 
 import { ApiBadRequestResponse, ApiBody, ApiInternalServerErrorResponse, ApiNotAcceptableResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { GetTeachersSuccess, GetTeachersBadRequest, GetTeachersQueryPage, GetTeachersQueryLimit, GetTeachersDescription, GetTeachersInternalServerError } from 'src/classes/swagger/get-datas.swagger';
-import { CreateTeacherBadRequest, CreateTeacherDescription, CreateTeacherInternalServerError, CreateTeacherRequestBody, CreateTeacherSuccess } from 'src/classes/swagger/create-data.swagger';
-import { GetTeacherDescription, GetTeacherInternalServerError, GetTeacherNotFound, GetTeacherParam, GetTeacherSuccess } from 'src/classes/swagger/get-data.swagger';
-import { DeleteTeacherDescription, DeleteTeacherInternalServerError, DeleteTeacherNotAcceptable, DeleteTeacherNotFound, DeleteTeacherParam, DeleteTeacherSuccess } from 'src/classes/swagger/delete-data.swagger';
+import { GetTeachersSuccess, GetTeachersBadRequest, GetTeachersQueryPage, GetTeachersQueryLimit, GetTeachersDescription, GetTeachersInternalServerError } from './swagger/get-datas.swagger';
+import { CreateTeacherBadRequest, CreateTeacherDescription, CreateTeacherInternalServerError, CreateTeacherRequestBody, CreateTeacherSuccess } from './swagger/create-data.swagger';
+import { GetTeacherDescription, GetTeacherInternalServerError, GetTeacherNotFound, GetTeacherParam, GetTeacherSuccess } from './swagger/get-data.swagger';
+import { DeleteTeacherDescription, DeleteTeacherInternalServerError, DeleteTeacherNotAcceptable, DeleteTeacherNotFound, DeleteTeacherParam, DeleteTeacherSuccess } from './swagger/delete-data.swagger';
 
 
 @Controller('teachers')
