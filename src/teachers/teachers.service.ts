@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { TeacherRepository } from './repository/teacher.repository';
 import { ClassRepository } from '../classes/repository/class.repository'
 import { Teacher } from './entity/teacher.entity';
@@ -35,7 +35,7 @@ export class TeachersService {
                 data: teacherDatas
             }
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            throw new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.message)
         }
     }
 
@@ -43,11 +43,11 @@ export class TeachersService {
         try {
             const data = await this.teacherRepository.findOneBy({'teacher_id': id})
             if (!data) {
-                throw new ErrorResponse("Data not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Teacher data with teacher_id: ${id} is not found`)
             }
             return data
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            throw new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.message)
         }
     }
 
@@ -56,7 +56,7 @@ export class TeachersService {
             await this.teacherRepository.createData(createTeacherDto)
             return createTeacherDto
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            throw new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.message)
         }
     }
 
@@ -65,17 +65,17 @@ export class TeachersService {
 
             const data = await this.teacherRepository.findOneBy({'teacher_id': id})
             if (!data) {
-                throw new ErrorResponse("Data not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, "Data not found")
             }
 
             const countClassData = await this.classRepository.countBy({'reference_teacher_id': id})
             if (countClassData > 0) {
-                throw new ErrorResponse("Cannot delete subject data, already used in class")
+                throw new ErrorResponse(HttpStatus.NOT_ACCEPTABLE, "Cannot delete subject data, already used in class")
             }
 
             await this.teacherRepository.delete({teacher_id: id})
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            throw new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.message)
         }
     }
 
@@ -83,7 +83,7 @@ export class TeachersService {
         try {
             const data = await this.teacherRepository.findOneBy({'teacher_id': id})
             if (!data) {
-                throw new ErrorResponse("Data not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, "Data not found")
             }
             
             const { full_name, date_of_birth, employee_id_number, email, phone_number, address } = updateTeacherDto
@@ -101,7 +101,7 @@ export class TeachersService {
             return updateTeacherDto
             
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            throw new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.message)
         }
     }
 

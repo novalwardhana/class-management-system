@@ -5,8 +5,10 @@ import { UpdateSubjectDto } from "./dto/update-subject.dto";
 import { Response } from 'express';
 import { SuccessResponse } from "./response/success.response"
 import { FilterSubjectDto } from './dto/filter-subject.dto';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @Controller('subjects')
+@ApiTags('subjects')
 export class SubjectsController {
 
     constructor(private readonly subjectsService: SubjectsService) {}

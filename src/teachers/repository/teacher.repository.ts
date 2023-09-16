@@ -4,8 +4,6 @@ import { Teacher } from "../entity/teacher.entity";
 import { CreateTeacherDto } from "../dto/create-teacher.dto";
 import { v4 as uuidv4 } from "uuid"
 import * as moment from "moment-timezone"
-import { FilterTeacherDto } from "../dto/filter-teacher.dto";
-import { fileURLToPath } from "url";
 
 @Injectable()
 export class TeacherRepository extends Repository<Teacher> {

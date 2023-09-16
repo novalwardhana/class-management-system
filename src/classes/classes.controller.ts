@@ -8,9 +8,11 @@ import { UpdateClassDto } from './dto/update-class.dto'
 import { ClassStatusEnum } from './entity/class-status-enum.entity'
 import { Class } from './entity/class.entity';
 import { FilterClassDto } from './dto/filter-class.dto';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 
 @Controller('classes')
+@ApiTags('classes')
 export class ClassesController {
 
     constructor(private readonly classesService: ClassesService) {}

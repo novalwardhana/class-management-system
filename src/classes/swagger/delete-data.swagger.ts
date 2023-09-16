@@ -1,0 +1,1 @@
+export const DeleteTeacherDescription = {description: "Delete data by teacher id"}
