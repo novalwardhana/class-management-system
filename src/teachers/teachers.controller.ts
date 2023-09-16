@@ -6,10 +6,11 @@ import { FilterTeacherDto } from './dto/filter-teacher.dto';
 import { Response } from 'express';
 import { SuccessResponse } from "./response/success-response.interface"
 
-import { ApiBadRequestResponse, ApiBody, ApiInternalServerErrorResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiBody, ApiInternalServerErrorResponse, ApiNotAcceptableResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { GetTeachersSuccess, GetTeachersBadRequest, GetTeachersQueryPage, GetTeachersQueryLimit, GetTeachersDescription, GetTeachersInternalServerError } from 'src/classes/swagger/get-datas.swagger';
 import { CreateTeacherBadRequest, CreateTeacherDescription, CreateTeacherInternalServerError, CreateTeacherRequestBody, CreateTeacherSuccess } from 'src/classes/swagger/create-data.swagger';
 import { GetTeacherDescription, GetTeacherInternalServerError, GetTeacherNotFound, GetTeacherParam, GetTeacherSuccess } from 'src/classes/swagger/get-data.swagger';
+import { DeleteTeacherDescription, DeleteTeacherInternalServerError, DeleteTeacherNotAcceptable, DeleteTeacherNotFound, DeleteTeacherParam, DeleteTeacherSuccess } from 'src/classes/swagger/delete-data.swagger';
 
 
 @Controller('teachers')
@@ -32,11 +33,11 @@ export class TeachersController {
     }
    
     @Get("/:id")
-    @ApiOperation(GetTeacherDescription)                                /* Swagger delete data: operation */
-    @ApiParam(GetTeacherParam)                                          /* Swagger delete data: param */
-    @ApiOkResponse(GetTeacherSuccess)                                   /* Swagger delete data: response success */
-    @ApiNotFoundResponse(GetTeacherNotFound)                            /* Swagger delete data: response not found */
-    @ApiInternalServerErrorResponse(GetTeacherInternalServerError)      /* Swagger delete data: response internal server error */
+    @ApiOperation(GetTeacherDescription)                                /* Swagger get data: operation */
+    @ApiParam(GetTeacherParam)                                          /* Swagger get data: param */
+    @ApiOkResponse(GetTeacherSuccess)                                   /* Swagger get data: response success */
+    @ApiNotFoundResponse(GetTeacherNotFound)                            /* Swagger get data: response not found */
+    @ApiInternalServerErrorResponse(GetTeacherInternalServerError)      /* Swagger get data: response internal server error */
     async getData(@Param("id") id: string, @Res() res: Response) {
         const responseData = await this.teachersService.getData(id)
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success get teacher data", responseData))
@@ -55,9 +56,15 @@ export class TeachersController {
     }
 
     @Delete("/:id")
+    @ApiOperation(DeleteTeacherDescription)                             /* Swagger delete data: operation */
+    @ApiParam(DeleteTeacherParam)                                       /* Swagger delete data: param */
+    @ApiOkResponse(DeleteTeacherSuccess)                                /* Swagger delete data: response success */
+    @ApiNotFoundResponse(DeleteTeacherNotFound)                         /* Swagger delete data: response not found */
+    @ApiNotAcceptableResponse(DeleteTeacherNotAcceptable)               /* Swagger delete data: response not acceptable */
+    @ApiInternalServerErrorResponse(DeleteTeacherInternalServerError)   /* Swagger delete data: response internal server error */
     async deleteData(@Param("id") id: string, @Res() res: Response) {
         await this.teachersService.deleteData(id)
-        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, `Success delete teacher data with uuid: ${id}`, null))
+        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, `Success delete teacher data with teacher id: ${id}`, null))
     }
 
     @Put("/:id")

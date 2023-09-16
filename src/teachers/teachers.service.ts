@@ -47,7 +47,11 @@ export class TeachersService {
             }
             return data
         } catch(e) {
-            throw new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.message)
+            let statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+            if (e.status) {
+                statusCode = e.status
+            }
+            throw new ErrorResponse(statusCode, e.message)
         }
     }
 
@@ -65,17 +69,21 @@ export class TeachersService {
 
             const data = await this.teacherRepository.findOneBy({'teacher_id': id})
             if (!data) {
-                throw new ErrorResponse(HttpStatus.NOT_FOUND, "Data not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Teacher data with teacher_id: ${id} is not found`)
             }
 
             const countClassData = await this.classRepository.countBy({'reference_teacher_id': id})
             if (countClassData > 0) {
-                throw new ErrorResponse(HttpStatus.NOT_ACCEPTABLE, "Cannot delete subject data, already used in class")
+                throw new ErrorResponse(HttpStatus.NOT_ACCEPTABLE, `Cannot delete teacher data, teacher_id: ${id} already used in class collection`)
             }
 
             await this.teacherRepository.delete({teacher_id: id})
         } catch(e) {
-            throw new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.message)
+            let statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+            if (e.status) {
+                statusCode = e.status
+            }
+            throw new ErrorResponse(statusCode, e.message)
         }
     }
 
