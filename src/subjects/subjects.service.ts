@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { SubjectRepository } from './repository/subject.repository';
 import { ClassRepository } from '../classes/repository/class.repository'
 import { Subject } from './entity/subject.entity';
@@ -35,7 +35,7 @@ export class SubjectsService {
                 data: subjectDatas
             }
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            throw new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.message)
         }
     }
 
@@ -43,11 +43,15 @@ export class SubjectsService {
         try {
             const data = await this.subjectRepository.findOneBy({'subject_id': id})
             if (!data) {
-                throw new ErrorResponse("Data not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Subject data with subject_id: ${id} is not found`)
             }
             return data
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            let statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+            if (e.status) {
+                statusCode = e.status
+            }
+            throw new ErrorResponse(statusCode, e.message)
         }
     }
 
@@ -56,7 +60,7 @@ export class SubjectsService {
             await this.subjectRepository.createData(createSubjectDto)
             return createSubjectDto
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            throw new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.message)
         }
     }
 
@@ -64,18 +68,22 @@ export class SubjectsService {
         try {
             const data = await this.subjectRepository.findOneBy({'subject_id': id})
             if (!data) {
-                throw new ErrorResponse("Data not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Subject data with subject_id: ${id} is not found`)
             }
 
             
             const countClassData = await this.classRepository.countBy({'reference_subject_id': id})
             if (countClassData > 0) {
-                throw new ErrorResponse("Cannot delete subject data, already used in class")
+                throw new ErrorResponse(HttpStatus.NOT_ACCEPTABLE, `Cannot delete subject data, subject_id: ${id} already used in class collection`)
             }
 
             await this.subjectRepository.delete({subject_id: id})
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            let statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+            if (e.status) {
+                statusCode = e.status
+            }
+            throw new ErrorResponse(statusCode, e.message)
         }
     }
 
@@ -83,7 +91,7 @@ export class SubjectsService {
         try {
             const data = await this.subjectRepository.findOneBy({'subject_id': id})
             if (!data) {
-                throw new ErrorResponse("Data not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Subject data with subject_id: ${id} is not found`)
             }
             
             const { name, description, level } = updateSubjectDto
@@ -98,7 +106,11 @@ export class SubjectsService {
             return updateSubjectDto
             
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            let statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+            if (e.status) {
+                statusCode = e.status
+            }
+            throw new ErrorResponse(statusCode, e.message)
         }
     }
 

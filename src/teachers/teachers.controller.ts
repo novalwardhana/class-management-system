@@ -12,7 +12,7 @@ import { GetTeachersSuccess, GetTeachersBadRequest, GetTeachersQueryPage, GetTea
 import { CreateTeacherBadRequest, CreateTeacherDescription, CreateTeacherInternalServerError, CreateTeacherRequestBody, CreateTeacherSuccess } from './swagger/create-data.swagger';
 import { GetTeacherDescription, GetTeacherInternalServerError, GetTeacherNotFound, GetTeacherParam, GetTeacherSuccess } from './swagger/get-data.swagger';
 import { DeleteTeacherDescription, DeleteTeacherInternalServerError, DeleteTeacherNotAcceptable, DeleteTeacherNotFound, DeleteTeacherParam, DeleteTeacherSuccess } from './swagger/delete-data.swagger';
-import { UpdateTeacherDescription, UpdateTeacherInternalServerError, UpdateTeacherNotFound, UpdateTeacherParam, UpdateTeacherRequestBody, UpdateTeacherSuccess } from './swagger/update-data.swagger';
+import { UpdateTeacherBadRequest, UpdateTeacherDescription, UpdateTeacherInternalServerError, UpdateTeacherNotFound, UpdateTeacherParam, UpdateTeacherRequestBody, UpdateTeacherSuccess } from './swagger/update-data.swagger';
 
 
 @Controller('teachers')
@@ -74,6 +74,7 @@ export class TeachersController {
     @ApiParam(UpdateTeacherParam)                                       /* Swagger update data: param */
     @ApiBody({schema: UpdateTeacherRequestBody})                        /* Swagger update data: body */
     @ApiOkResponse(UpdateTeacherSuccess)                                /* Swagger update data: response success */
+    @ApiBadRequestResponse(UpdateTeacherBadRequest)                     /* Swagger update data: response bad request */
     @ApiNotFoundResponse(UpdateTeacherNotFound)                         /* Swagger update data: response not found */
     @ApiInternalServerErrorResponse(UpdateTeacherInternalServerError)   /* Swagger update data: response internal server error */
     @UsePipes(ValidationPipe)

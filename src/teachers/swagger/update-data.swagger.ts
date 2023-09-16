@@ -35,6 +35,33 @@ export const UpdateTeacherSuccess = {
     }
 }
 
+export const UpdateTeacherBadRequest = {
+    description: 'Bad request update teacher data',  
+    schema: {
+        type: 'object',
+        properties: {
+            message: {
+                type: 'array',
+                items: {
+                    type: 'string',
+                    example: [
+                        'full_name should not be empty',
+                        'date_of_birth must be a Date instance',
+                        'date_of_birth should not be empty',
+                        'employee_id_number should not be empty',
+                        'email must be an email',
+                        'email should not be empty',
+                        'phone_number should not be empty',
+                        'address should not be empty'
+                    ]
+                }
+            },
+            error: {type: 'string', example: 'Bad Request'},
+            statusCode: {type: 'number', example: 400}
+        }
+    }
+  }
+
 export const UpdateTeacherNotFound = {
     description: 'Teacher data not found', 
     schema: {
