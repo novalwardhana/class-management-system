@@ -11,6 +11,7 @@ import { GetTeachersSuccess, GetTeachersBadRequest, GetTeachersQueryPage, GetTea
 import { CreateTeacherBadRequest, CreateTeacherDescription, CreateTeacherInternalServerError, CreateTeacherRequestBody, CreateTeacherSuccess } from './swagger/create-data.swagger';
 import { GetTeacherDescription, GetTeacherInternalServerError, GetTeacherNotFound, GetTeacherParam, GetTeacherSuccess } from './swagger/get-data.swagger';
 import { DeleteTeacherDescription, DeleteTeacherInternalServerError, DeleteTeacherNotAcceptable, DeleteTeacherNotFound, DeleteTeacherParam, DeleteTeacherSuccess } from './swagger/delete-data.swagger';
+import { UpdateTeacherDescription, UpdateTeacherInternalServerError, UpdateTeacherNotFound, UpdateTeacherParam, UpdateTeacherRequestBody, UpdateTeacherSuccess } from './swagger/update-data.swagger';
 
 
 @Controller('teachers')
@@ -29,7 +30,7 @@ export class TeachersController {
     @ApiInternalServerErrorResponse(GetTeachersInternalServerError)     /* Swagger get datas: response internal server error */
     async getDatas(@Query() filterTeacherDto: FilterTeacherDto, @Res() res: Response) {
         const responseData = await this.teachersService.getDatas(filterTeacherDto)
-        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success get teacher data", responseData))
+        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success get teachers data", responseData))
     }
    
     @Get("/:id")
@@ -68,10 +69,16 @@ export class TeachersController {
     }
 
     @Put("/:id")
+    @ApiOperation(UpdateTeacherDescription)                             /* Swagger update data: operation */
+    @ApiParam(UpdateTeacherParam)                                       /* Swagger update data: param */
+    @ApiBody({schema: UpdateTeacherRequestBody})                        /* Swagger update data: body */
+    @ApiOkResponse(UpdateTeacherSuccess)                                /* Swagger update data: response success */
+    @ApiNotFoundResponse(UpdateTeacherNotFound)                         /* Swagger update data: response not found */
+    @ApiInternalServerErrorResponse(UpdateTeacherInternalServerError)   /* Swagger update data: response internal server error */
     @UsePipes(ValidationPipe)
     async updateData(@Param("id") id: string, @Body() updateTeacherDto: UpdateTeacherDto, @Res() res: Response) {
         const responseData = await this.teachersService.updateData(id, updateTeacherDto)
-        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
+        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, `Success update teacher data with teacher id: ${id}`, responseData))
     }
 
 }

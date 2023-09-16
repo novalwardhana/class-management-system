@@ -14,7 +14,7 @@ export const DeleteTeacherSuccess = {
 }
 
 export const DeleteTeacherNotFound = {
-    description: 'Data not found',  
+    description: `Teacher data not found`,  
     schema: {
         type: 'object',
         properties: {
