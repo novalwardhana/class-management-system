@@ -5,7 +5,8 @@ import { UpdateSubjectDto } from "./dto/update-subject.dto";
 import { Response } from 'express';
 import { SuccessResponse } from "./response/success.response"
 import { FilterSubjectDto } from './dto/filter-subject.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiBadRequestResponse, ApiInternalServerErrorResponse, ApiOkResponse, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { GetSubjectsBadRequest, GetSubjectsDescription, GetSubjectsInternalServerError, GetSubjectsQueryLimit, GetSubjectsQueryPage, GetSubjectsSuccess } from './swagger/get-datas.swagger';
 
 @Controller('subjects')
 @ApiTags('subjects')
@@ -15,9 +16,15 @@ export class SubjectsController {
 
     @Get()
     @UsePipes(ValidationPipe)
+    @ApiOperation(GetSubjectsDescription)                               /* Swagger get datas: operation */
+    @ApiQuery(GetSubjectsQueryPage)                                     /* Swagger get datas: query page */
+    @ApiQuery(GetSubjectsQueryLimit)                                    /* Swagger get datas: query limit */
+    @ApiOkResponse(GetSubjectsSuccess)                                  /* Swagger get datas: response success */
+    @ApiBadRequestResponse(GetSubjectsBadRequest)                       /* Swagger get datas: response bad request */
+    @ApiInternalServerErrorResponse(GetSubjectsInternalServerError)     /* Swagger get datas: response internal server error */
     async getDatas(@Query() filterSubjectDto: FilterSubjectDto, @Res() res: Response) {
         const responseData = await this.subjectsService.getDatas(filterSubjectDto)
-        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
+        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success get subjects data", responseData))
     }
 
     @Get("/:id")

@@ -6,6 +6,7 @@ import { FilterTeacherDto } from './dto/filter-teacher.dto';
 import { Response } from 'express';
 import { SuccessResponse } from "./response/success-response.interface"
 
+/* Swagger dependencies */
 import { ApiBadRequestResponse, ApiBody, ApiInternalServerErrorResponse, ApiNotAcceptableResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { GetTeachersSuccess, GetTeachersBadRequest, GetTeachersQueryPage, GetTeachersQueryLimit, GetTeachersDescription, GetTeachersInternalServerError } from './swagger/get-datas.swagger';
 import { CreateTeacherBadRequest, CreateTeacherDescription, CreateTeacherInternalServerError, CreateTeacherRequestBody, CreateTeacherSuccess } from './swagger/create-data.swagger';
