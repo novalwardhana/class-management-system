@@ -15,6 +15,7 @@ import { GetClassesBadRequest, GetClassesDescription, GetClassesInternalServerEr
 import { GetClassDescription, GetClassInternalServerError, GetClassNotFound, GetClassParam, GetClassSuccess } from './swagger/get-data.swagger';
 import { CreateClassBadRequest, CreateClassDescription, CreateClassInternalServerError, CreateClassNotFound, CreateClassRequestBody, CreateClassSuccess } from './swagger/create-data.swagger';
 import { DeleteClassDescription, DeleteClassInternalServerError, DeleteClassNotFound, DeleteClassParam, DeleteClassSuccess } from './swagger/delete-data.swagger';
+import { UpdateClassBadRequest, UpdateClassDescription, UpdateClassInternalServerError, UpdateClassNotFound, UpdateClassParam, UpdateClassRequestBody, UpdateClassSuccess } from './swagger/update-data.swagger';
 
 @Controller('classes')
 @ApiTags('classes')
@@ -71,10 +72,17 @@ export class ClassesController {
     }
 
     @Put("/:id")
+    @ApiOperation(UpdateClassDescription)                                   /* Swagger update data: operation */
+    @ApiParam(UpdateClassParam)                                             /* Swagger update data: param */
+    @ApiBody({schema: UpdateClassRequestBody})                              /* Swagger update data: body */
+    @ApiOkResponse(UpdateClassSuccess)                                      /* Swagger update data: response success */
+    @ApiBadRequestResponse(UpdateClassBadRequest)                           /* Swagger update data: response bad request */
+    @ApiNotFoundResponse(UpdateClassNotFound)                               /* Swagger update data: response not found */
+    @ApiInternalServerErrorResponse(UpdateClassInternalServerError)         /* Swagger update data: response internal server error */
     @UsePipes(ValidationPipe)
     async updateData(@Param("id") id: string, @Body() updateClassDto: UpdateClassDto, @Res() res: Response) {
         const responseData = await this.classesService.updateData(id, updateClassDto)
-        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
+        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success update class data", responseData))
     }
 
     @Put("/:status/:id")

@@ -1,4 +1,4 @@
-export const UpdateTeacherDescription = {description: "Update data by teacher id"}
+export const UpdateTeacherDescription = {description: "Update data by teacher_id"}
 export const UpdateTeacherParam = { name: 'id', type: 'string', example: 'ae167e22-7696-4271-a495-0fb65b4d05ec'}
 export const UpdateTeacherRequestBody = {
     type: 'object',

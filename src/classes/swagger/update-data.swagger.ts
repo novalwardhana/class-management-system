@@ -1,5 +1,6 @@
-export const CreateClassDescription = {description: "Create new class data"}
-export const CreateClassRequestBody = {
+export const UpdateClassDescription = {description: "Update data by class_id"}
+export const UpdateClassParam = { name: 'id', type: 'string', example: '26cc5a2e-5ff3-4def-a927-e0fbb3349756'}
+export const UpdateClassRequestBody = {
     type: 'object',
     properties: {
         title: {type: 'string', example:'Belajar Alquran Lanjutan 1'},
@@ -12,16 +13,17 @@ export const CreateClassRequestBody = {
     required: ['title', 'teacher_id', 'subject_id', 'date', 'start_time', 'end_time'],
 }
 
-export const CreateClassSuccess = {
-    description: 'Success create class data', 
+export const UpdateClassSuccess = {
+    description: 'Success update class data', 
     schema: {
         type: 'object',
         properties: {
             status_code: {type: 'number', example: 200},
-            message: {type: 'string', example: 'Success create class data'},
+            message: {type: 'string', example: `Success update class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756`},
             data: {
                 type: 'object',
                 properties: {
+                    _id: { type: 'string', example: '6505e1db2184cf30746aea64' },
                     class_id: { type: 'string', example: '26cc5a2e-5ff3-4def-a927-e0fbb3349756' },
                     title: { type: 'string', example: 'Belajar Alquran Lanjutan 1' },
                     teacher: {
@@ -60,27 +62,27 @@ export const CreateClassSuccess = {
                     reference_subject_id: { type: 'string', example: '6f6b0851-adb3-4699-a849-5e5d806b3a1b'},
                     created_at: { type: 'string', example: '2023-09-17T00:11:55.255Z'},
                     updated_at: { type: 'string', example: '2023-09-17T00:11:55.256Z'},
-                    _id: { type: 'string', example: '6505e1db2184cf30746aea64' },
                 }
             }
         }
     }
 }
 
-export const CreateClassNotFound = {
+export const UpdateClassNotFound = {
     description: 'Teacher / subject data not found',  
     schema: {
         type: 'object',
         properties: {
             status_code: {type: 'number', example: 404},
-            message: {type: 'string', example: `Teacher /subject data with teacher_id / subject_id: ae167e22-7696-4271-a495-0fb65b4d05ec is not found`},
+            message: {type: 'string', example: `Class/teacher/subject data with class_id/teacher_id/subject_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756 is not found`},
             data: {type: 'any', example: null}
         }
     }
 }
 
-export const CreateClassBadRequest = {
-    description: 'Bad request create class data',  
+
+export const UpdateClassBadRequest = {
+    description: 'Bad request update class data',  
     schema: {
         type: 'object',
         properties: {
@@ -105,10 +107,10 @@ export const CreateClassBadRequest = {
             statusCode: {type: 'number', example: 400}
         }
     }
-  }
+}
 
-  export const CreateClassInternalServerError = {
-    description: 'Internal server error create class data',  
+export const UpdateClassInternalServerError = {
+    description: 'Internal server error update class data',  
     schema: {
         type: 'object',
         properties: {
