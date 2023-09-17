@@ -52,7 +52,9 @@ export const GetTeachersBadRequest = {
                     type: 'string',
                     example: [
                         'page must be an integer number',
-                        'page should not be empty'
+                        'page should not be empty',
+                        'limit must be an integer number',
+                        'limit should not be empty'
                     ]
                 }
             },
