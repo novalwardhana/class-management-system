@@ -1,0 +1,1492 @@
+{
+	"info": {
+		"_postman_id": "92276fe0-b56f-45f5-9e32-b3ed1ad2f9b3",
+		"name": "Class Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18579543"
+	},
+	"item": [
+		{
+			"name": "Teacher",
+			"item": [
+				{
+					"name": "Get teacher datas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/teachers?page=1&limit=10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"teachers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/teachers?page=1&limit=10",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"teachers"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "473"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d9-GY06rzjPm6tGrks8/8AJjtXPTUI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Sep 2023 03:58:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success get teacher data\",\n    \"data\": {\n        \"page\": 1,\n        \"per_page\": 10,\n        \"total_page\": 1,\n        \"total_data\": 1,\n        \"data\": [\n            {\n                \"_id\": \"6505275ac37da523e51cc10e\",\n                \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n                \"full_name\": \"Noval Wardhana\",\n                \"date_of_birth\": \"1995-01-01\",\n                \"employee_id_number\": \"19950101\",\n                \"email\": \"noval@gmail.com\",\n                \"phone_number\": \"085741123456\",\n                \"address\": \"Yogyakarta Indonesia\",\n                \"created_at\": \"2023-09-16T10:56:10.721Z\",\n                \"updated_at\": \"2023-09-16T10:56:10.723Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create new teacher data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"Noval Wardhana\",\n    \"date_of_birth\": \"1995-01-01\",\n    \"employee_id_number\": \"19950101\",\n    \"email\": \"noval@gmail.com\",\n    \"phone_number\": \"085741123456\",\n    \"address\": \"Yogyakarta Indonesia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/teachers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"teachers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"full_name\": \"Noval Wardhana\",\n    \"date_of_birth\": \"1995-01-01\",\n    \"employee_id_number\": \"19950101\",\n    \"email\": \"noval@gmail.com\",\n    \"phone_number\": \"085741123456\",\n    \"address\": \"Yogyakarta Indonesia\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/teachers",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"teachers"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "227"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e3-urWySH+t97BKH8ryadf+MCleBqk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Sep 2023 03:56:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"full_name\": \"Noval Wardhana\",\n        \"date_of_birth\": \"1995-01-01\",\n        \"employee_id_number\": \"19950101\",\n        \"email\": \"noval@gmail.com\",\n        \"phone_number\": \"085741123456\",\n        \"address\": \"Yogyakarta Indonesia\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get data by teacher_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/teachers/ae167e22-7696-4271-a495-0fb65b4d05ec",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"teachers",
+								"ae167e22-7696-4271-a495-0fb65b4d05ec"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/teachers/ae167e22-7696-4271-a495-0fb65b4d05ec",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"teachers",
+										"ae167e22-7696-4271-a495-0fb65b4d05ec"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "392"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"188-sZf6k8c8Lg09AzFcp5abW30E0cA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Sep 2023 04:54:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"_id\": \"6505275ac37da523e51cc10e\",\n        \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n        \"full_name\": \"Noval Wardhana\",\n        \"date_of_birth\": \"1995-01-01\",\n        \"employee_id_number\": \"19950101\",\n        \"email\": \"noval@gmail.com\",\n        \"phone_number\": \"085741123456\",\n        \"address\": \"Yogyakarta Indonesia\",\n        \"created_at\": \"2023-09-16T10:56:10.721Z\",\n        \"updated_at\": \"2023-09-16T10:56:10.723Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete data by teacher_id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/teachers/ae167e22-7696-4271-a495-0fb65b4d05ec",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"teachers",
+								"ae167e22-7696-4271-a495-0fb65b4d05ec"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/teachers/ae167e22-7696-4271-a495-0fb65b4d05ec",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"teachers",
+										"ae167e22-7696-4271-a495-0fb65b4d05ec"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "125"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7d-cnwu9bjSrumJlay86YVh9pCoesw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Sep 2023 05:40:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success delete teacher data with teacher id: ae167e22-7696-4271-a495-0fb65b4d05ec\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update data by subject_id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"Noval Wardhana\",\n    \"date_of_birth\": \"1995-01-01\",\n    \"employee_id_number\": \"19950101\",\n    \"email\": \"noval@gmail.com\",\n    \"phone_number\": \"085741123456\",\n    \"address\": \"Yogyakarta Indonesia\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/teachers/ae167e22-7696-4271-a495-0fb65b4d05ec",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"teachers",
+								"ae167e22-7696-4271-a495-0fb65b4d05ec"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"full_name\": \"Noval Wardhana\",\n    \"date_of_birth\": \"1995-01-01\",\n    \"employee_id_number\": \"19950101\",\n    \"email\": \"noval@gmail.com\",\n    \"phone_number\": \"085741123456\",\n    \"address\": \"Yogyakarta Indonesia\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/teachers/ae167e22-7696-4271-a495-0fb65b4d05ec",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"teachers",
+										"ae167e22-7696-4271-a495-0fb65b4d05ec"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "301"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12d-SPD29whAM4ivuOuEnSVDvz4uYfI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Sep 2023 06:34:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success update teacher data with teacher id: ae167e22-7696-4271-a495-0fb65b4d05ec\",\n    \"data\": {\n        \"full_name\": \"Noval Wardhana\",\n        \"date_of_birth\": \"1995-01-01\",\n        \"employee_id_number\": \"19950101\",\n        \"email\": \"noval@gmail.com\",\n        \"phone_number\": \"085741123456\",\n        \"address\": \"Yogyakarta Indonesia\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Subject",
+			"item": [
+				{
+					"name": "Get subject datas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/subjects?page=1&limit=10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"subjects"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/subjects?page=1&limit=10",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"subjects"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "388"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"184-jIp4l/DJRhX6W5BGUp8d5rrKzGI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Sep 2023 07:06:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success get subjects data\",\n    \"data\": {\n        \"page\": 1,\n        \"per_page\": 10,\n        \"total_page\": 1,\n        \"total_data\": 1,\n        \"data\": [\n            {\n                \"_id\": \"650553f181f3fa1b7cf4f7c2\",\n                \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n                \"name\": \"Belajar Al Quran 1\",\n                \"description\": \"Belajar Al Quran dan terjemahan\",\n                \"level\": \"expert\",\n                \"created_at\": \"2023-09-16T14:06:25.732Z\",\n                \"updated_at\": \"2023-09-16T14:06:25.733Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create new subject data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Belajar Al Quran 1\",\n    \"description\": \"Belajar Al Quran dan terjemahan\",\n    \"level\": \"expert\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/subjects",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"subjects"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Belajar Al Quran 1\",\n    \"description\": \"Belajar Al Quran dan terjemahan\",\n    \"level\": \"expert\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/subjects",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"subjects"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "141"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8d-ITA/GdtbECuAk56RKU1jQGxqwYg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Sep 2023 07:06:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"name\": \"Belajar Al Quran 1\",\n        \"description\": \"Belajar Al Quran dan terjemahan\",\n        \"level\": \"expert\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get data by subject_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/subjects/6f6b0851-adb3-4699-a849-5e5d806b3a1b",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"subjects",
+								"6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/subjects/6f6b0851-adb3-4699-a849-5e5d806b3a1b",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"subjects",
+										"6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "323"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"143-ktIq9Ng+73soA4aOEtRnw5CURlU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Sep 2023 16:44:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success get subject data\",\n    \"data\": {\n        \"_id\": \"650553f181f3fa1b7cf4f7c2\",\n        \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n        \"name\": \"Belajar Al Quran 1\",\n        \"description\": \"Belajar Al Quran dan terjemahan\",\n        \"level\": \"expert\",\n        \"created_at\": \"2023-09-16T14:06:25.732Z\",\n        \"updated_at\": \"2023-09-16T14:06:25.733Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete data by subject_id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/subjects/6f6b0851-adb3-4699-a849-5e5d806b3a1b",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"subjects",
+								"6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/subjects/6f6b0851-adb3-4699-a849-5e5d806b3a1b",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"subjects",
+										"6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "125"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7d-5UgqYu7uVTC+2plWX/+uKfxfLQ8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Sep 2023 16:46:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success delete subject data with subject_id: 6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update data by subject_id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Belajar Al Quran 1\",\n    \"description\": \"Belajar Al Quran dan terjemahan\",\n    \"level\": \"expert\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/subjects/6f6b0851-adb3-4699-a849-5e5d806b3a1b",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"subjects",
+								"6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Belajar Al Quran 1\",\n    \"description\": \"Belajar Al Quran dan terjemahan\",\n    \"level\": \"expert\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/subjects/6f6b0851-adb3-4699-a849-5e5d806b3a1b",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"subjects",
+										"6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "215"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"d7-ItTB0ZBXOG3P5GjW4muixWnZ9Oo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Sep 2023 17:31:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success update subject data with subject_id: 6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n    \"data\": {\n        \"name\": \"Belajar Al Quran 1\",\n        \"description\": \"Belajar Al Quran dan terjemahan\",\n        \"level\": \"expert\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Class",
+			"item": [
+				{
+					"name": "Get class datas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/classes?page=1&limit=10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"classes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/classes?page=1&limit=10",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"classes"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1154"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"482-8TwsVXGbJD2XvtsA4WK+0XJLNrY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Sep 2023 01:31:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"page\": 1,\n        \"per_page\": 2,\n        \"total_page\": 1,\n        \"total_data\": 1,\n        \"data\": [\n            {\n                \"_id\": \"6505e1db2184cf30746aea64\",\n                \"class_id\": \"26cc5a2e-5ff3-4def-a927-e0fbb3349756\",\n                \"title\": \"Belajar Alquran Lanjutan 1\",\n                \"teacher\": {\n                    \"_id\": \"65053ffb7d0992d1ed884e75\",\n                    \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n                    \"full_name\": \"Noval Wardhana\",\n                    \"date_of_birth\": \"1995-01-01\",\n                    \"employee_id_number\": \"19950101\",\n                    \"email\": \"noval@gmail.com\",\n                    \"phone_number\": \"085741123456\",\n                    \"address\": \"Yogyakarta Indonesia\",\n                    \"created_at\": \"2023-09-16T12:41:15.230Z\",\n                    \"updated_at\": \"2023-09-16T13:44:58.554Z\"\n                },\n                \"subject\": {\n                    \"_id\": \"6505dc28417cea7b5455d5c9\",\n                    \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n                    \"name\": \"Belajar Al Quran 1\",\n                    \"description\": \"Belajar Al Quran dan terjemahan\",\n                    \"level\": \"expert\",\n                    \"created_at\": \"2023-09-16T23:47:36.054Z\",\n                    \"updated_at\": \"2023-09-17T00:34:23.256Z\"\n                },\n                \"date\": \"2023-09-15\",\n                \"start_time\": \"11:00\",\n                \"end_time\": \"15:35\",\n                \"duration\": 275,\n                \"status\": \"active\",\n                \"reference_teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n                \"reference_subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n                \"created_at\": \"2023-09-17T00:11:55.255Z\",\n                \"updated_at\": \"2023-09-17T00:11:55.256Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get data by class_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/classes/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"classes",
+								"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/classes/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"classes",
+										"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1106"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"452-esZoapvpXsiIxWJZY7ly/Oc+iBo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Sep 2023 04:32:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success get class data\",\n    \"data\": {\n        \"_id\": \"6506810707390a5c2e7ee5f4\",\n        \"class_id\": \"26cc5a2e-5ff3-4def-a927-e0fbb3349756\",\n        \"title\": \"Belajar Alquran Lanjutan 1\",\n        \"teacher\": {\n            \"_id\": \"65053ffb7d0992d1ed884e75\",\n            \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n            \"full_name\": \"Noval Wardhana\",\n            \"date_of_birth\": \"1995-01-01\",\n            \"employee_id_number\": \"19950101\",\n            \"email\": \"noval@gmail.com\",\n            \"phone_number\": \"085741123456\",\n            \"address\": \"Yogyakarta Indonesia\",\n            \"created_at\": \"2023-09-16T12:41:15.230Z\",\n            \"updated_at\": \"2023-09-16T13:44:58.554Z\"\n        },\n        \"subject\": {\n            \"_id\": \"6505dc28417cea7b5455d5c9\",\n            \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n            \"name\": \"Belajar Al Quran 1\",\n            \"description\": \"Belajar Al Quran dan terjemahan\",\n            \"level\": \"expert\",\n            \"created_at\": \"2023-09-16T23:47:36.054Z\",\n            \"updated_at\": \"2023-09-17T00:34:23.256Z\"\n        },\n        \"date\": \"2023-09-15\",\n        \"start_time\": \"11:00\",\n        \"end_time\": \"15:35\",\n        \"duration\": 275,\n        \"status\": \"active\",\n        \"reference_teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n        \"reference_subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n        \"created_at\": \"2023-09-17T11:31:03.740Z\",\n        \"updated_at\": \"2023-09-17T11:31:03.741Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Create new class data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Belajar Alquran Lanjutan 1\",\n    \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n    \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n    \"date\": \"2023-09-15\",\n    \"start_time\": \"11:00\",\n    \"end_time\": \"15:35\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/classes",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"classes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Belajar Alquran Lanjutan 1\",\n    \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n    \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n    \"date\": \"2023-09-15\",\n    \"start_time\": \"11:00\",\n    \"end_time\": \"15:35\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/classes",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"classes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1091"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"443-h0xIg/Vr82s0q/PrndRDue0lUwE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Sep 2023 04:47:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"class_id\": \"1fed6d32-acf3-440f-bfe4-f83b4b931c61\",\n        \"title\": \"Belajar Alquran Lanjutan 1\",\n        \"teacher\": {\n            \"_id\": \"65053ffb7d0992d1ed884e75\",\n            \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n            \"full_name\": \"Noval Wardhana\",\n            \"date_of_birth\": \"1995-01-01\",\n            \"employee_id_number\": \"19950101\",\n            \"email\": \"noval@gmail.com\",\n            \"phone_number\": \"085741123456\",\n            \"address\": \"Yogyakarta Indonesia\",\n            \"created_at\": \"2023-09-16T12:41:15.230Z\",\n            \"updated_at\": \"2023-09-16T13:44:58.554Z\"\n        },\n        \"subject\": {\n            \"_id\": \"6505dc28417cea7b5455d5c9\",\n            \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n            \"name\": \"Belajar Al Quran 1\",\n            \"description\": \"Belajar Al Quran dan terjemahan\",\n            \"level\": \"expert\",\n            \"created_at\": \"2023-09-16T23:47:36.054Z\",\n            \"updated_at\": \"2023-09-17T00:34:23.256Z\"\n        },\n        \"date\": \"2023-09-15\",\n        \"start_time\": \"11:00\",\n        \"end_time\": \"15:35\",\n        \"duration\": 275,\n        \"status\": \"active\",\n        \"reference_teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n        \"reference_subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n        \"created_at\": \"2023-09-17T11:47:25.277Z\",\n        \"updated_at\": \"2023-09-17T11:47:25.277Z\",\n        \"_id\": \"650684ddb0a8b70cf74cf891\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete data by class_id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/classes/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"classes",
+								"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/classes/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"classes",
+										"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "122"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7a-CUU3TLZI63FVtE57WZZ1MWs5kmc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Sep 2023 05:28:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success delete class data with class_id:: 26cc5a2e-5ff3-4def-a927-e0fbb3349756\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update data by class_id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Belajar Alquran Lanjutan 1\",\n    \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n    \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n    \"date\": \"2023-09-15\",\n    \"start_time\": \"11:00\",\n    \"end_time\": \"15:35\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/classes/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"classes",
+								"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Belajar Alquran Lanjutan 1\",\n    \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n    \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n    \"date\": \"2023-09-15\",\n    \"start_time\": \"11:00\",\n    \"end_time\": \"15:35\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/classes/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"classes",
+										"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1091"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"443-BFph+mboz5fITLQTIz7hKedpXw0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Sep 2023 05:51:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"_id\": \"65068e87f1d85ab2d249af41\",\n        \"class_id\": \"26cc5a2e-5ff3-4def-a927-e0fbb3349756\",\n        \"title\": \"Belajar Alquran Lanjutan 1\",\n        \"teacher\": {\n            \"_id\": \"65053ffb7d0992d1ed884e75\",\n            \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n            \"full_name\": \"Noval Wardhana\",\n            \"date_of_birth\": \"1995-01-01\",\n            \"employee_id_number\": \"19950101\",\n            \"email\": \"noval@gmail.com\",\n            \"phone_number\": \"085741123456\",\n            \"address\": \"Yogyakarta Indonesia\",\n            \"created_at\": \"2023-09-16T12:41:15.230Z\",\n            \"updated_at\": \"2023-09-16T13:44:58.554Z\"\n        },\n        \"subject\": {\n            \"_id\": \"6505dc28417cea7b5455d5c9\",\n            \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n            \"name\": \"Belajar Al Quran 1\",\n            \"description\": \"Belajar Al Quran dan terjemahan\",\n            \"level\": \"expert\",\n            \"created_at\": \"2023-09-16T23:47:36.054Z\",\n            \"updated_at\": \"2023-09-17T00:34:23.256Z\"\n        },\n        \"date\": \"2023-09-15\",\n        \"start_time\": \"11:00\",\n        \"end_time\": \"15:35\",\n        \"duration\": 275,\n        \"status\": \"active\",\n        \"reference_teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n        \"reference_subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n        \"created_at\": \"2023-09-17T12:28:39.066Z\",\n        \"updated_at\": \"2023-09-17T12:51:43.907Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Set active by class_id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/classes/set-active/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"classes",
+								"set-active",
+								"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/classes/set-active/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"classes",
+										"set-active",
+										"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1091"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"443-07EO7Lo9eI7Wq68SSRN3K96cJVM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Sep 2023 06:57:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"_id\": \"65068e87f1d85ab2d249af41\",\n        \"class_id\": \"26cc5a2e-5ff3-4def-a927-e0fbb3349756\",\n        \"title\": \"Belajar Alquran Lanjutan 1\",\n        \"teacher\": {\n            \"_id\": \"65053ffb7d0992d1ed884e75\",\n            \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n            \"full_name\": \"Noval Wardhana\",\n            \"date_of_birth\": \"1995-01-01\",\n            \"employee_id_number\": \"19950101\",\n            \"email\": \"noval@gmail.com\",\n            \"phone_number\": \"085741123456\",\n            \"address\": \"Yogyakarta Indonesia\",\n            \"created_at\": \"2023-09-16T12:41:15.230Z\",\n            \"updated_at\": \"2023-09-16T13:44:58.554Z\"\n        },\n        \"subject\": {\n            \"_id\": \"6505dc28417cea7b5455d5c9\",\n            \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n            \"name\": \"Belajar Al Quran 1\",\n            \"description\": \"Belajar Al Quran dan terjemahan\",\n            \"level\": \"expert\",\n            \"created_at\": \"2023-09-16T23:47:36.054Z\",\n            \"updated_at\": \"2023-09-17T00:34:23.256Z\"\n        },\n        \"date\": \"2023-09-15\",\n        \"start_time\": \"11:00\",\n        \"end_time\": \"15:35\",\n        \"duration\": 275,\n        \"status\": \"active\",\n        \"reference_teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n        \"reference_subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n        \"created_at\": \"2023-09-17T12:28:39.066Z\",\n        \"updated_at\": \"2023-09-17T12:54:35.815Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Set archived by class_id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/classes/set-archived/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"classes",
+								"set-archived",
+								"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/classes/set-archived/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"classes",
+										"set-archived",
+										"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1093"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"445-C2XxvjJi9t9N2pwZIKw4Ejjsd5c\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Sep 2023 06:58:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success\",\n    \"data\": {\n        \"_id\": \"65068e87f1d85ab2d249af41\",\n        \"class_id\": \"26cc5a2e-5ff3-4def-a927-e0fbb3349756\",\n        \"title\": \"Belajar Alquran Lanjutan 1\",\n        \"teacher\": {\n            \"_id\": \"65053ffb7d0992d1ed884e75\",\n            \"teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n            \"full_name\": \"Noval Wardhana\",\n            \"date_of_birth\": \"1995-01-01\",\n            \"employee_id_number\": \"19950101\",\n            \"email\": \"noval@gmail.com\",\n            \"phone_number\": \"085741123456\",\n            \"address\": \"Yogyakarta Indonesia\",\n            \"created_at\": \"2023-09-16T12:41:15.230Z\",\n            \"updated_at\": \"2023-09-16T13:44:58.554Z\"\n        },\n        \"subject\": {\n            \"_id\": \"6505dc28417cea7b5455d5c9\",\n            \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n            \"name\": \"Belajar Al Quran 1\",\n            \"description\": \"Belajar Al Quran dan terjemahan\",\n            \"level\": \"expert\",\n            \"created_at\": \"2023-09-16T23:47:36.054Z\",\n            \"updated_at\": \"2023-09-17T00:34:23.256Z\"\n        },\n        \"date\": \"2023-09-15\",\n        \"start_time\": \"11:00\",\n        \"end_time\": \"15:35\",\n        \"duration\": 275,\n        \"status\": \"archived\",\n        \"reference_teacher_id\": \"ae167e22-7696-4271-a495-0fb65b4d05ec\",\n        \"reference_subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n        \"created_at\": \"2023-09-17T12:28:39.066Z\",\n        \"updated_at\": \"2023-09-17T12:54:35.815Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Unassigned teacher by class_id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/classes/unassigned-teacher/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"classes",
+								"unassigned-teacher",
+								"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/classes/unassigned-teacher/26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"classes",
+										"unassigned-teacher",
+										"26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "804"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"324-ukGRzMbMEUH6zhPt5yywSwhTfxw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Sep 2023 08:16:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status_code\": 200,\n    \"message\": \"Success set unassigned-teacher class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756\",\n    \"data\": {\n        \"_id\": \"65068e87f1d85ab2d249af41\",\n        \"class_id\": \"26cc5a2e-5ff3-4def-a927-e0fbb3349756\",\n        \"title\": \"Belajar Alquran Lanjutan 1\",\n        \"teacher\": null,\n        \"subject\": {\n            \"_id\": \"6505dc28417cea7b5455d5c9\",\n            \"subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n            \"name\": \"Belajar Al Quran 1\",\n            \"description\": \"Belajar Al Quran dan terjemahan\",\n            \"level\": \"expert\",\n            \"created_at\": \"2023-09-16T23:47:36.054Z\",\n            \"updated_at\": \"2023-09-17T00:34:23.256Z\"\n        },\n        \"date\": \"2023-09-15\",\n        \"start_time\": \"11:00\",\n        \"end_time\": \"15:35\",\n        \"duration\": 275,\n        \"status\": \"archived\",\n        \"reference_teacher_id\": null,\n        \"reference_subject_id\": \"6f6b0851-adb3-4699-a849-5e5d806b3a1b\",\n        \"created_at\": \"2023-09-17T12:28:39.066Z\",\n        \"updated_at\": \"2023-09-17T14:35:43.554Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "host",
+			"type": "string"
+		}
+	]
+}

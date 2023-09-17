@@ -1,0 +1,3324 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/teachers": {
+      "get": {
+        "operationId": "TeachersController_getDatas",
+        "summary": "",
+        "description": "Get all the teacher's data",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success get teacher data"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "number",
+                          "example": 1
+                        },
+                        "per_page": {
+                          "type": "number",
+                          "example": 2
+                        },
+                        "total_page": {
+                          "type": "number",
+                          "example": 5
+                        },
+                        "total_data": {
+                          "type": "number",
+                          "example": 10
+                        },
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string",
+                                "example": "6505275ac37da523e51cc10e"
+                              },
+                              "teacher_id": {
+                                "type": "string",
+                                "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                              },
+                              "full_name": {
+                                "type": "string",
+                                "example": "Noval Wardhana"
+                              },
+                              "date_of_birth": {
+                                "type": "string",
+                                "format": "date",
+                                "example": "1995-01-01"
+                              },
+                              "employee_id_number": {
+                                "type": "string",
+                                "example": "19950101"
+                              },
+                              "email": {
+                                "type": "string",
+                                "format": "email",
+                                "example": "noval@gmail.com"
+                              },
+                              "phone_number": {
+                                "type": "string",
+                                "example": "085741123456"
+                              },
+                              "address": {
+                                "type": "string",
+                                "example": "Yogyakarta Indonesia"
+                              },
+                              "created_at": {
+                                "type": "string",
+                                "example": "2023-09-16T10:56:10.721Z"
+                              },
+                              "updated_at": {
+                                "type": "string",
+                                "example": "2023-09-16T10:56:10.721Z"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request get teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": [
+                          "page must be an integer number",
+                          "page should not be empty",
+                          "limit must be an integer number",
+                          "limit should not be empty"
+                        ]
+                      }
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": 400
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error get teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "teachers"
+        ]
+      },
+      "post": {
+        "operationId": "TeachersController_createData",
+        "summary": "",
+        "description": "Create new teacher data",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "full_name": {
+                    "type": "string",
+                    "example": "Noval Wardhana"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "example": "1995-01-01"
+                  },
+                  "employee_id_number": {
+                    "type": "string",
+                    "example": "19950101"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "noval@gmail.com"
+                  },
+                  "phone_number": {
+                    "type": "string",
+                    "example": "085741123456"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Yogyakarta Indonesia"
+                  }
+                },
+                "required": [
+                  "full_name",
+                  "date_of_birth",
+                  "employee_id_number",
+                  "email",
+                  "phone_number",
+                  "address"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success create teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success create teacher data"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "full_name": {
+                          "type": "string",
+                          "example": "Noval Wardhana"
+                        },
+                        "date_of_birth": {
+                          "type": "string",
+                          "example": "1995-01-01"
+                        },
+                        "employee_id_number": {
+                          "type": "string",
+                          "example": "19950101"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "noval@gmail.com"
+                        },
+                        "phone_number": {
+                          "type": "string",
+                          "example": "085741123456"
+                        },
+                        "address": {
+                          "type": "string",
+                          "example": "Yogyakarta Indonesia"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request create teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": [
+                          "full_name should not be empty",
+                          "date_of_birth must be a Date instance",
+                          "date_of_birth should not be empty",
+                          "employee_id_number should not be empty",
+                          "email must be an email",
+                          "email should not be empty",
+                          "phone_number should not be empty",
+                          "address should not be empty"
+                        ]
+                      }
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": 400
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error create teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "teachers"
+        ]
+      }
+    },
+    "/teachers/{id}": {
+      "get": {
+        "operationId": "TeachersController_getData",
+        "summary": "",
+        "description": "Get data by teacher_id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "ae167e22-7696-4271-a495-0fb65b4d05ec",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success get teacher data"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "6505275ac37da523e51cc10e"
+                        },
+                        "teacher_id": {
+                          "type": "string",
+                          "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                        },
+                        "full_name": {
+                          "type": "string",
+                          "example": "Noval Wardhana"
+                        },
+                        "date_of_birth": {
+                          "type": "string",
+                          "example": "1995-01-01"
+                        },
+                        "employee_id_number": {
+                          "type": "string",
+                          "example": "19950101"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "noval@gmail.com"
+                        },
+                        "phone_number": {
+                          "type": "string",
+                          "example": "085741123456"
+                        },
+                        "address": {
+                          "type": "string",
+                          "example": "Yogyakarta Indonesia"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2023-09-16T10:56:10.721Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2023-09-16T10:56:10.723Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Teacher data with teacher_id: ae167e22-7696-4271-a495-0fb65b4d05ec is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error get teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "teachers"
+        ]
+      },
+      "delete": {
+        "operationId": "TeachersController_deleteData",
+        "summary": "",
+        "description": "Delete data by teacher_id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "ae167e22-7696-4271-a495-0fb65b4d05ec",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success delete teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success delete teacher data with teacher id: ae167e22-7696-4271-a495-0fb65b4d05ec"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Teacher data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Teacher data with teacher_id: ae167e22-7696-4271-a495-0fb65b4d05ec is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Data not acceptable because already use in class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 406
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Cannot delete teacher data, teacher_id: ae167e22-7696-4271-a495-0fb65b4d05ec already used in class collection"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when delete teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "teachers"
+        ]
+      },
+      "put": {
+        "operationId": "TeachersController_updateData",
+        "summary": "",
+        "description": "Update data by teacher_id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "ae167e22-7696-4271-a495-0fb65b4d05ec",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "full_name": {
+                    "type": "string",
+                    "example": "Noval Wardhana"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "example": "1995-01-01"
+                  },
+                  "employee_id_number": {
+                    "type": "string",
+                    "example": "19950101"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "noval@gmail.com"
+                  },
+                  "phone_number": {
+                    "type": "string",
+                    "example": "085741123456"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Yogyakarta Indonesia"
+                  }
+                },
+                "required": [
+                  "full_name",
+                  "date_of_birth",
+                  "employee_id_number",
+                  "email",
+                  "phone_number",
+                  "address"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success create teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success update teacher data with teacher id: ae167e22-7696-4271-a495-0fb65b4d05ec"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "full_name": {
+                          "type": "string",
+                          "example": "Noval Wardhana"
+                        },
+                        "date_of_birth": {
+                          "type": "string",
+                          "example": "1995-01-01"
+                        },
+                        "employee_id_number": {
+                          "type": "string",
+                          "example": "19950101"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "noval@gmail.com"
+                        },
+                        "phone_number": {
+                          "type": "string",
+                          "example": "085741123456"
+                        },
+                        "address": {
+                          "type": "string",
+                          "example": "Yogyakarta Indonesia"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request update teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": [
+                          "full_name should not be empty",
+                          "date_of_birth must be a Date instance",
+                          "date_of_birth should not be empty",
+                          "employee_id_number should not be empty",
+                          "email must be an email",
+                          "email should not be empty",
+                          "phone_number should not be empty",
+                          "address should not be empty"
+                        ]
+                      }
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": 400
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Teacher data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Teacher data with teacher_id: ae167e22-7696-4271-a495-0fb65b4d05ec is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when update teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "teachers"
+        ]
+      }
+    },
+    "/subjects": {
+      "get": {
+        "operationId": "SubjectsController_getDatas",
+        "summary": "",
+        "description": "Get all the subject's data",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success get subject data"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "number",
+                          "example": 1
+                        },
+                        "per_page": {
+                          "type": "number",
+                          "example": 2
+                        },
+                        "total_page": {
+                          "type": "number",
+                          "example": 5
+                        },
+                        "total_data": {
+                          "type": "number",
+                          "example": 10
+                        },
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string",
+                                "example": "650553f181f3fa1b7cf4f7c2"
+                              },
+                              "subject_id": {
+                                "type": "string",
+                                "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "Belajar Al Quran 1"
+                              },
+                              "description": {
+                                "type": "string",
+                                "example": "Belajar Al Quran dan terjemahan"
+                              },
+                              "level": {
+                                "type": "string",
+                                "example": "expert"
+                              },
+                              "created_at": {
+                                "type": "string",
+                                "example": "2023-09-16T14:06:25.732Z"
+                              },
+                              "updated_at": {
+                                "type": "string",
+                                "example": "2023-09-16T14:06:25.733Z"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request get subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": [
+                          "page must be an integer number",
+                          "page should not be empty",
+                          "limit must be an integer number",
+                          "limit should not be empty"
+                        ]
+                      }
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": 400
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error get subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "subjects"
+        ]
+      },
+      "post": {
+        "operationId": "SubjectsController_createData",
+        "summary": "",
+        "description": "Create new subject data",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Belajar Al Quran 1"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Belajar Al Quran dan terjemahan"
+                  },
+                  "level": {
+                    "type": "string",
+                    "example": "expert"
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "level"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success create subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success create subject data"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "Belajar Al Quran 1"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "Belajar Al Quran dan terjemahan"
+                        },
+                        "level": {
+                          "type": "string",
+                          "example": "expert"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request create subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": [
+                          "name should not be empty",
+                          "level must be one of the following values: 0, 1, 2",
+                          "level should not be empty"
+                        ]
+                      }
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": 400
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error create subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "subjects"
+        ]
+      }
+    },
+    "/subjects/{id}": {
+      "get": {
+        "operationId": "SubjectsController_getData",
+        "summary": "",
+        "description": "Get data by subject id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success get subject data"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "650553f181f3fa1b7cf4f7c2"
+                        },
+                        "subject_id": {
+                          "type": "string",
+                          "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Belajar Al Quran 1"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "Belajar Al Quran dan terjemahan"
+                        },
+                        "level": {
+                          "type": "string",
+                          "example": "expert"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2023-09-16T14:06:25.732Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2023-09-16T14:06:25.733Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Subject data with subject_id: 6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error get subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "subjects"
+        ]
+      },
+      "delete": {
+        "operationId": "SubjectsController_deleteData",
+        "summary": "",
+        "description": "Delete data by subject id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success delete subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success delete subject data with subject id: 6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Subject data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Subject data with subject_id: 6f6b0851-adb3-4699-a849-5e5d806b3a1b is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Data not acceptable because already use in class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 406
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Cannot delete subject data, subject_id: 6f6b0851-adb3-4699-a849-5e5d806b3a1b already used in class collection"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when delete subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "subjects"
+        ]
+      },
+      "put": {
+        "operationId": "SubjectsController_updateData",
+        "summary": "",
+        "description": "Update data by subject id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Belajar Al Quran 1"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Belajar Al Quran dan terjemahan"
+                  },
+                  "level": {
+                    "type": "string",
+                    "example": "expert"
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "level"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success update subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success update subject data with subject_id: 6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "Belajar Al Quran 1"
+                        },
+                        "description": {
+                          "type": "string",
+                          "example": "Belajar Al Quran dan terjemahan"
+                        },
+                        "level": {
+                          "type": "string",
+                          "example": "expert"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Success update subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": [
+                          "name should not be empty",
+                          "level must be one of the following values: 0, 1, 2",
+                          "level should not be empty"
+                        ]
+                      }
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": 400
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Subject data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Subject data with subject_id: 6f6b0851-adb3-4699-a849-5e5d806b3a1b is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when update subject data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "subjects"
+        ]
+      }
+    },
+    "/classes": {
+      "get": {
+        "operationId": "ClassesController_getDatas",
+        "summary": "",
+        "description": "Get all the classes data",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get classes data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success get classes data"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "number",
+                          "example": 1
+                        },
+                        "per_page": {
+                          "type": "number",
+                          "example": 2
+                        },
+                        "total_page": {
+                          "type": "number",
+                          "example": 5
+                        },
+                        "total_data": {
+                          "type": "number",
+                          "example": 10
+                        },
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "_id": {
+                                "type": "string",
+                                "example": "6505e1db2184cf30746aea64"
+                              },
+                              "class_id": {
+                                "type": "string",
+                                "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                              },
+                              "title": {
+                                "type": "string",
+                                "example": "Belajar Alquran Lanjutan 1"
+                              },
+                              "teacher": {
+                                "type": "object",
+                                "properties": {
+                                  "_id": {
+                                    "type": "string",
+                                    "example": "6505275ac37da523e51cc10e"
+                                  },
+                                  "teacher_id": {
+                                    "type": "string",
+                                    "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                                  },
+                                  "full_name": {
+                                    "type": "string",
+                                    "example": "Noval Wardhana"
+                                  },
+                                  "date_of_birth": {
+                                    "type": "string",
+                                    "example": "1995-01-01"
+                                  },
+                                  "employee_id_number": {
+                                    "type": "string",
+                                    "example": "19950101"
+                                  },
+                                  "email": {
+                                    "type": "string",
+                                    "example": "noval@gmail.com"
+                                  },
+                                  "phone_number": {
+                                    "type": "string",
+                                    "example": "085741123456"
+                                  },
+                                  "address": {
+                                    "type": "string",
+                                    "example": "Yogyakarta Indonesia"
+                                  },
+                                  "created_at": {
+                                    "type": "string",
+                                    "example": "2023-09-16T12:41:15.230Z"
+                                  },
+                                  "updated_at": {
+                                    "type": "string",
+                                    "example": "2023-09-16T13:44:58.554Z"
+                                  }
+                                }
+                              },
+                              "subject": {
+                                "type": "object",
+                                "properties": {
+                                  "_id": {
+                                    "type": "string",
+                                    "example": "650553f181f3fa1b7cf4f7c2"
+                                  },
+                                  "subject_id": {
+                                    "type": "string",
+                                    "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                                  },
+                                  "name": {
+                                    "type": "string",
+                                    "example": "Belajar Al Quran 1"
+                                  },
+                                  "description": {
+                                    "type": "string",
+                                    "example": "Belajar Al Quran dan terjemahan"
+                                  },
+                                  "level": {
+                                    "type": "string",
+                                    "example": "expert"
+                                  },
+                                  "created_at": {
+                                    "type": "string",
+                                    "example": "2023-09-16T23:47:36.054Z"
+                                  },
+                                  "updated_at": {
+                                    "type": "string",
+                                    "example": "2023-09-17T00:34:23.256Z"
+                                  }
+                                }
+                              },
+                              "date": {
+                                "type": "string",
+                                "example": "2023-09-15"
+                              },
+                              "start_time": {
+                                "type": "string",
+                                "example": "11:00"
+                              },
+                              "end_time": {
+                                "type": "string",
+                                "example": "15:35"
+                              },
+                              "duration": {
+                                "type": "number",
+                                "example": 275
+                              },
+                              "status": {
+                                "type": "string",
+                                "example": "active"
+                              },
+                              "reference_teacher_id": {
+                                "type": "string",
+                                "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                              },
+                              "reference_subject_id": {
+                                "type": "string",
+                                "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                              },
+                              "created_at": {
+                                "type": "string",
+                                "example": "2023-09-17T00:11:55.255Z"
+                              },
+                              "updated_at": {
+                                "type": "string",
+                                "example": "2023-09-17T00:11:55.256Z"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request get classes data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": [
+                          "page must be an integer number",
+                          "page should not be empty",
+                          "limit must be an integer number",
+                          "limit should not be empty"
+                        ]
+                      }
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": 400
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error get teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "classes"
+        ]
+      },
+      "post": {
+        "operationId": "ClassesController_createData",
+        "summary": "",
+        "description": "Create new class data",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Belajar Alquran Lanjutan 1"
+                  },
+                  "teacher_id": {
+                    "type": "string",
+                    "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                  },
+                  "subject_id": {
+                    "type": "string",
+                    "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                  },
+                  "date": {
+                    "type": "string",
+                    "example": "2023-09-15"
+                  },
+                  "start_time": {
+                    "type": "string",
+                    "example": "11:00"
+                  },
+                  "end_time": {
+                    "type": "string",
+                    "example": "15:35"
+                  }
+                },
+                "required": [
+                  "title",
+                  "teacher_id",
+                  "subject_id",
+                  "date",
+                  "start_time",
+                  "end_time"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success create class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success create class data"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "class_id": {
+                          "type": "string",
+                          "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                        },
+                        "title": {
+                          "type": "string",
+                          "example": "Belajar Alquran Lanjutan 1"
+                        },
+                        "teacher": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "6505275ac37da523e51cc10e"
+                            },
+                            "teacher_id": {
+                              "type": "string",
+                              "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                            },
+                            "full_name": {
+                              "type": "string",
+                              "example": "Noval Wardhana"
+                            },
+                            "date_of_birth": {
+                              "type": "string",
+                              "example": "1995-01-01"
+                            },
+                            "employee_id_number": {
+                              "type": "string",
+                              "example": "19950101"
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "noval@gmail.com"
+                            },
+                            "phone_number": {
+                              "type": "string",
+                              "example": "085741123456"
+                            },
+                            "address": {
+                              "type": "string",
+                              "example": "Yogyakarta Indonesia"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-09-16T12:41:15.230Z"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "example": "2023-09-16T13:44:58.554Z"
+                            }
+                          }
+                        },
+                        "subject": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "650553f181f3fa1b7cf4f7c2"
+                            },
+                            "subject_id": {
+                              "type": "string",
+                              "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Belajar Al Quran 1"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "Belajar Al Quran dan terjemahan"
+                            },
+                            "level": {
+                              "type": "string",
+                              "example": "expert"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-09-16T23:47:36.054Z"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "example": "2023-09-17T00:34:23.256Z"
+                            }
+                          }
+                        },
+                        "date": {
+                          "type": "string",
+                          "example": "2023-09-15"
+                        },
+                        "start_time": {
+                          "type": "string",
+                          "example": "11:00"
+                        },
+                        "end_time": {
+                          "type": "string",
+                          "example": "15:35"
+                        },
+                        "duration": {
+                          "type": "number",
+                          "example": 275
+                        },
+                        "status": {
+                          "type": "string",
+                          "example": "active"
+                        },
+                        "reference_teacher_id": {
+                          "type": "string",
+                          "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                        },
+                        "reference_subject_id": {
+                          "type": "string",
+                          "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.255Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.256Z"
+                        },
+                        "_id": {
+                          "type": "string",
+                          "example": "6505e1db2184cf30746aea64"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request create class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": [
+                          "title should not be empty",
+                          "teacher_id must be a UUID",
+                          "teacher_id should not be empty",
+                          "subject_id must be a UUID",
+                          "subject_id should not be empty",
+                          "date must be a Date instance",
+                          "date should not be empty",
+                          "start_time should not be empty",
+                          "end_time should not be empty"
+                        ]
+                      }
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": 400
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Teacher / subject data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Teacher /subject data with teacher_id / subject_id: ae167e22-7696-4271-a495-0fb65b4d05ec is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error create class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "classes"
+        ]
+      }
+    },
+    "/classes/{id}": {
+      "get": {
+        "operationId": "ClassesController_getData",
+        "summary": "",
+        "description": "Get data by class_id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success get class data"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "6505e1db2184cf30746aea64"
+                        },
+                        "class_id": {
+                          "type": "string",
+                          "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                        },
+                        "title": {
+                          "type": "string",
+                          "example": "Belajar Alquran Lanjutan 1"
+                        },
+                        "teacher": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "6505275ac37da523e51cc10e"
+                            },
+                            "teacher_id": {
+                              "type": "string",
+                              "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                            },
+                            "full_name": {
+                              "type": "string",
+                              "example": "Noval Wardhana"
+                            },
+                            "date_of_birth": {
+                              "type": "string",
+                              "example": "1995-01-01"
+                            },
+                            "employee_id_number": {
+                              "type": "string",
+                              "example": "19950101"
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "noval@gmail.com"
+                            },
+                            "phone_number": {
+                              "type": "string",
+                              "example": "085741123456"
+                            },
+                            "address": {
+                              "type": "string",
+                              "example": "Yogyakarta Indonesia"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-09-16T12:41:15.230Z"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "example": "2023-09-16T13:44:58.554Z"
+                            }
+                          }
+                        },
+                        "subject": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "650553f181f3fa1b7cf4f7c2"
+                            },
+                            "subject_id": {
+                              "type": "string",
+                              "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Belajar Al Quran 1"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "Belajar Al Quran dan terjemahan"
+                            },
+                            "level": {
+                              "type": "string",
+                              "example": "expert"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-09-16T23:47:36.054Z"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "example": "2023-09-17T00:34:23.256Z"
+                            }
+                          }
+                        },
+                        "date": {
+                          "type": "string",
+                          "example": "2023-09-15"
+                        },
+                        "start_time": {
+                          "type": "string",
+                          "example": "11:00"
+                        },
+                        "end_time": {
+                          "type": "string",
+                          "example": "15:35"
+                        },
+                        "duration": {
+                          "type": "number",
+                          "example": 275
+                        },
+                        "status": {
+                          "type": "string",
+                          "example": "active"
+                        },
+                        "reference_teacher_id": {
+                          "type": "string",
+                          "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                        },
+                        "reference_subject_id": {
+                          "type": "string",
+                          "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.255Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.256Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756 is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error get class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "classes"
+        ]
+      },
+      "delete": {
+        "operationId": "ClassesController_deleteData",
+        "summary": "",
+        "description": "Delete data by class_id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success delete class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success delete class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Class data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756 is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error when class teacher data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "classes"
+        ]
+      },
+      "put": {
+        "operationId": "ClassesController_updateData",
+        "summary": "",
+        "description": "Update data by class_id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "example": "Belajar Alquran Lanjutan 1"
+                  },
+                  "teacher_id": {
+                    "type": "string",
+                    "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                  },
+                  "subject_id": {
+                    "type": "string",
+                    "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                  },
+                  "date": {
+                    "type": "string",
+                    "example": "2023-09-15"
+                  },
+                  "start_time": {
+                    "type": "string",
+                    "example": "11:00"
+                  },
+                  "end_time": {
+                    "type": "string",
+                    "example": "15:35"
+                  }
+                },
+                "required": [
+                  "title",
+                  "teacher_id",
+                  "subject_id",
+                  "date",
+                  "start_time",
+                  "end_time"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success update class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success update class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "6505e1db2184cf30746aea64"
+                        },
+                        "class_id": {
+                          "type": "string",
+                          "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                        },
+                        "title": {
+                          "type": "string",
+                          "example": "Belajar Alquran Lanjutan 1"
+                        },
+                        "teacher": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "6505275ac37da523e51cc10e"
+                            },
+                            "teacher_id": {
+                              "type": "string",
+                              "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                            },
+                            "full_name": {
+                              "type": "string",
+                              "example": "Noval Wardhana"
+                            },
+                            "date_of_birth": {
+                              "type": "string",
+                              "example": "1995-01-01"
+                            },
+                            "employee_id_number": {
+                              "type": "string",
+                              "example": "19950101"
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "noval@gmail.com"
+                            },
+                            "phone_number": {
+                              "type": "string",
+                              "example": "085741123456"
+                            },
+                            "address": {
+                              "type": "string",
+                              "example": "Yogyakarta Indonesia"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-09-16T12:41:15.230Z"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "example": "2023-09-16T13:44:58.554Z"
+                            }
+                          }
+                        },
+                        "subject": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "650553f181f3fa1b7cf4f7c2"
+                            },
+                            "subject_id": {
+                              "type": "string",
+                              "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Belajar Al Quran 1"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "Belajar Al Quran dan terjemahan"
+                            },
+                            "level": {
+                              "type": "string",
+                              "example": "expert"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-09-16T23:47:36.054Z"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "example": "2023-09-17T00:34:23.256Z"
+                            }
+                          }
+                        },
+                        "date": {
+                          "type": "string",
+                          "example": "2023-09-15"
+                        },
+                        "start_time": {
+                          "type": "string",
+                          "example": "11:00"
+                        },
+                        "end_time": {
+                          "type": "string",
+                          "example": "15:35"
+                        },
+                        "duration": {
+                          "type": "number",
+                          "example": 275
+                        },
+                        "status": {
+                          "type": "string",
+                          "example": "active"
+                        },
+                        "reference_teacher_id": {
+                          "type": "string",
+                          "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                        },
+                        "reference_subject_id": {
+                          "type": "string",
+                          "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.255Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.256Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request update class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": [
+                          "title should not be empty",
+                          "teacher_id must be a UUID",
+                          "teacher_id should not be empty",
+                          "subject_id must be a UUID",
+                          "subject_id should not be empty",
+                          "date must be a Date instance",
+                          "date should not be empty",
+                          "start_time should not be empty",
+                          "end_time should not be empty"
+                        ]
+                      }
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Bad Request"
+                    },
+                    "statusCode": {
+                      "type": "number",
+                      "example": 400
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Teacher / subject data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Class/teacher/subject data with class_id/teacher_id/subject_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756 is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error update class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "classes"
+        ]
+      }
+    },
+    "/classes/set-active/{id}": {
+      "put": {
+        "operationId": "ClassesController_setActive",
+        "summary": "",
+        "description": "Set active by class_id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success set active class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success set active class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "6505e1db2184cf30746aea64"
+                        },
+                        "class_id": {
+                          "type": "string",
+                          "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                        },
+                        "title": {
+                          "type": "string",
+                          "example": "Belajar Alquran Lanjutan 1"
+                        },
+                        "teacher": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "6505275ac37da523e51cc10e"
+                            },
+                            "teacher_id": {
+                              "type": "string",
+                              "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                            },
+                            "full_name": {
+                              "type": "string",
+                              "example": "Noval Wardhana"
+                            },
+                            "date_of_birth": {
+                              "type": "string",
+                              "example": "1995-01-01"
+                            },
+                            "employee_id_number": {
+                              "type": "string",
+                              "example": "19950101"
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "noval@gmail.com"
+                            },
+                            "phone_number": {
+                              "type": "string",
+                              "example": "085741123456"
+                            },
+                            "address": {
+                              "type": "string",
+                              "example": "Yogyakarta Indonesia"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-09-16T12:41:15.230Z"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "example": "2023-09-16T13:44:58.554Z"
+                            }
+                          }
+                        },
+                        "subject": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "650553f181f3fa1b7cf4f7c2"
+                            },
+                            "subject_id": {
+                              "type": "string",
+                              "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Belajar Al Quran 1"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "Belajar Al Quran dan terjemahan"
+                            },
+                            "level": {
+                              "type": "string",
+                              "example": "expert"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-09-16T23:47:36.054Z"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "example": "2023-09-17T00:34:23.256Z"
+                            }
+                          }
+                        },
+                        "date": {
+                          "type": "string",
+                          "example": "2023-09-15"
+                        },
+                        "start_time": {
+                          "type": "string",
+                          "example": "11:00"
+                        },
+                        "end_time": {
+                          "type": "string",
+                          "example": "15:35"
+                        },
+                        "duration": {
+                          "type": "number",
+                          "example": 275
+                        },
+                        "status": {
+                          "type": "string",
+                          "example": "active"
+                        },
+                        "reference_teacher_id": {
+                          "type": "string",
+                          "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                        },
+                        "reference_subject_id": {
+                          "type": "string",
+                          "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.255Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.256Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756 is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error get class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "classes"
+        ]
+      }
+    },
+    "/classes/set-archived/{id}": {
+      "put": {
+        "operationId": "ClassesController_setArchived",
+        "summary": "",
+        "description": "Set archived by class_id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success set archived class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success set archived class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "6505e1db2184cf30746aea64"
+                        },
+                        "class_id": {
+                          "type": "string",
+                          "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                        },
+                        "title": {
+                          "type": "string",
+                          "example": "Belajar Alquran Lanjutan 1"
+                        },
+                        "teacher": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "6505275ac37da523e51cc10e"
+                            },
+                            "teacher_id": {
+                              "type": "string",
+                              "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                            },
+                            "full_name": {
+                              "type": "string",
+                              "example": "Noval Wardhana"
+                            },
+                            "date_of_birth": {
+                              "type": "string",
+                              "example": "1995-01-01"
+                            },
+                            "employee_id_number": {
+                              "type": "string",
+                              "example": "19950101"
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "noval@gmail.com"
+                            },
+                            "phone_number": {
+                              "type": "string",
+                              "example": "085741123456"
+                            },
+                            "address": {
+                              "type": "string",
+                              "example": "Yogyakarta Indonesia"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-09-16T12:41:15.230Z"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "example": "2023-09-16T13:44:58.554Z"
+                            }
+                          }
+                        },
+                        "subject": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "650553f181f3fa1b7cf4f7c2"
+                            },
+                            "subject_id": {
+                              "type": "string",
+                              "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Belajar Al Quran 1"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "Belajar Al Quran dan terjemahan"
+                            },
+                            "level": {
+                              "type": "string",
+                              "example": "expert"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-09-16T23:47:36.054Z"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "example": "2023-09-17T00:34:23.256Z"
+                            }
+                          }
+                        },
+                        "date": {
+                          "type": "string",
+                          "example": "2023-09-15"
+                        },
+                        "start_time": {
+                          "type": "string",
+                          "example": "11:00"
+                        },
+                        "end_time": {
+                          "type": "string",
+                          "example": "15:35"
+                        },
+                        "duration": {
+                          "type": "number",
+                          "example": 275
+                        },
+                        "status": {
+                          "type": "string",
+                          "example": "archived"
+                        },
+                        "reference_teacher_id": {
+                          "type": "string",
+                          "example": "ae167e22-7696-4271-a495-0fb65b4d05ec"
+                        },
+                        "reference_subject_id": {
+                          "type": "string",
+                          "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.255Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.256Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756 is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error get class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "classes"
+        ]
+      }
+    },
+    "/classes/unassigned-teacher/{id}": {
+      "put": {
+        "operationId": "ClassesController_setUnassignedTeacher",
+        "summary": "",
+        "description": "Set unassigned teacher by class_id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success set unassigned-teacher class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Success set unassigned-teacher class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "6505e1db2184cf30746aea64"
+                        },
+                        "class_id": {
+                          "type": "string",
+                          "example": "26cc5a2e-5ff3-4def-a927-e0fbb3349756"
+                        },
+                        "title": {
+                          "type": "string",
+                          "example": "Belajar Alquran Lanjutan 1"
+                        },
+                        "teacher": {
+                          "type": "object",
+                          "example": null
+                        },
+                        "subject": {
+                          "type": "object",
+                          "properties": {
+                            "_id": {
+                              "type": "string",
+                              "example": "650553f181f3fa1b7cf4f7c2"
+                            },
+                            "subject_id": {
+                              "type": "string",
+                              "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                            },
+                            "name": {
+                              "type": "string",
+                              "example": "Belajar Al Quran 1"
+                            },
+                            "description": {
+                              "type": "string",
+                              "example": "Belajar Al Quran dan terjemahan"
+                            },
+                            "level": {
+                              "type": "string",
+                              "example": "expert"
+                            },
+                            "created_at": {
+                              "type": "string",
+                              "example": "2023-09-16T23:47:36.054Z"
+                            },
+                            "updated_at": {
+                              "type": "string",
+                              "example": "2023-09-17T00:34:23.256Z"
+                            }
+                          }
+                        },
+                        "date": {
+                          "type": "string",
+                          "example": "2023-09-15"
+                        },
+                        "start_time": {
+                          "type": "string",
+                          "example": "11:00"
+                        },
+                        "end_time": {
+                          "type": "string",
+                          "example": "15:35"
+                        },
+                        "duration": {
+                          "type": "number",
+                          "example": 275
+                        },
+                        "status": {
+                          "type": "string",
+                          "example": "active"
+                        },
+                        "reference_teacher_id": {
+                          "type": "string",
+                          "example": null
+                        },
+                        "reference_subject_id": {
+                          "type": "string",
+                          "example": "6f6b0851-adb3-4699-a849-5e5d806b3a1b"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.255Z"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "example": "2023-09-17T00:11:55.256Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Class data with class_id: 26cc5a2e-5ff3-4def-a927-e0fbb3349756 is not found"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error get class data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status_code": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    },
+                    "data": {
+                      "type": "any",
+                      "example": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "classes"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Class Management System API",
+    "description": "Your API Description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [
+    {
+      "url": "http://example.com/"
+    }
+  ],
+  "components": {
+    "schemas": {}
+  }
+}
