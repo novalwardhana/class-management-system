@@ -55,6 +55,7 @@ $ npm run test:cov
 ```bash
 Swagger local: http://localhost:9000/docs
 Swaggerhub: https://app.swaggerhub.com/apis-docs/novalwardhana/mo-be-class-management-system-api/1.0
+Postman: https://github.com/novalwardhana/class-management-system/blob/master/mo-be-class-management-system-api.postman_collection.json
 ```
 
 ## Modules Created
