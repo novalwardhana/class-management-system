@@ -11,6 +11,7 @@ $ npm install
 
 ## Env & Database
 
+```bash
 APP_PORT=9000
 DATABASE_TYPE=mongodb
 DATABASE_HOST=127.0.0.1
@@ -20,6 +21,7 @@ DATABASE_USERNAME=noval
 DATABASE_PASSWORD=noval
 DATABASE_SYNChRONIZE=true
 DATABASE_LOGGER=simple-console
+```
 
 ## Running the app
 
