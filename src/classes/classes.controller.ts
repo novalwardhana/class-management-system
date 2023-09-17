@@ -18,6 +18,7 @@ import { DeleteClassDescription, DeleteClassInternalServerError, DeleteClassNotF
 import { UpdateClassBadRequest, UpdateClassDescription, UpdateClassInternalServerError, UpdateClassNotFound, UpdateClassParam, UpdateClassRequestBody, UpdateClassSuccess } from './swagger/update-data.swagger';
 import { SetActiveClassDescription, SetActiveClassInternalServerError, SetActiveClassNotFound, SetActiveClassParam, SetActiveClassSuccess } from './swagger/set-active.swagger';
 import { SetArchivedClassDescription, SetArchivedClassInternalServerError, SetArchivedClassNotFound, SetArchivedClassParam, SetArchivedClassSuccess } from './swagger/set-archived.swagger';
+import { UnassignedTeacherClassDescription, UnassignedTeacherClassInternalServerError, UnassignedTeacherClassNotFound, UnassignedTeacherClassParam, UnassignedTeacherClassSuccess } from './swagger/unassigned-teacher.swagger';
 
 @Controller('classes')
 @ApiTags('classes')
@@ -27,35 +28,35 @@ export class ClassesController {
 
     @Get()
     @UsePipes(ValidationPipe)
-    @ApiOperation(GetClassesDescription)                                    /* Swagger get datas: operation */
-    @ApiQuery(GetClassesQueryPage)                                          /* Swagger get datas: query page */
-    @ApiQuery(GetClassesQueryLimit)                                         /* Swagger get datas: query limit */
-    @ApiOkResponse(GetClassesSuccess)                                       /* Swagger get datas: response success */
-    @ApiBadRequestResponse(GetClassesBadRequest)                            /* Swagger get datas: response bad request */
-    @ApiInternalServerErrorResponse(GetClassesInternalServerError)          /* Swagger get datas: response internal server error */
+    @ApiOperation(GetClassesDescription)                                        /* Swagger get datas: operation */
+    @ApiQuery(GetClassesQueryPage)                                              /* Swagger get datas: query page */
+    @ApiQuery(GetClassesQueryLimit)                                             /* Swagger get datas: query limit */
+    @ApiOkResponse(GetClassesSuccess)                                           /* Swagger get datas: response success */
+    @ApiBadRequestResponse(GetClassesBadRequest)                                /* Swagger get datas: response bad request */
+    @ApiInternalServerErrorResponse(GetClassesInternalServerError)              /* Swagger get datas: response internal server error */
     async getDatas(@Query() filterClassDto: FilterClassDto, @Res() res: Response) {
         const responseData = await this.classesService.getDatas(filterClassDto)
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success get classes data", responseData))
     }
 
     @Get("/:id")
-    @ApiOperation(GetClassDescription)                                      /* Swagger get data: operation */
-    @ApiParam(GetClassParam)                                                /* Swagger get data: param */
-    @ApiOkResponse(GetClassSuccess)                                         /* Swagger get data: response success */
-    @ApiNotFoundResponse(GetClassNotFound)                                  /* Swagger get data: response not found */
-    @ApiInternalServerErrorResponse(GetClassInternalServerError)            /* Swagger get data: response internal server error */
+    @ApiOperation(GetClassDescription)                                          /* Swagger get data: operation */
+    @ApiParam(GetClassParam)                                                    /* Swagger get data: param */
+    @ApiOkResponse(GetClassSuccess)                                             /* Swagger get data: response success */
+    @ApiNotFoundResponse(GetClassNotFound)                                      /* Swagger get data: response not found */
+    @ApiInternalServerErrorResponse(GetClassInternalServerError)                /* Swagger get data: response internal server error */
     async getData(@Param("id") id: string, @Res() res: Response) {
         const responseData = await this.classesService.getData(id)
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success get class data", responseData))
     }
 
     @Post()
-    @ApiOperation(CreateClassDescription)                                   /* Swagger create data: operation */
-    @ApiBody({schema: CreateClassRequestBody})                              /* Swagger create data: body */
-    @ApiOkResponse(CreateClassSuccess)                                      /* Swagger create data: response success */
-    @ApiNotFoundResponse(CreateClassNotFound)                               /* Swagger create data: response not found */
-    @ApiBadRequestResponse(CreateClassBadRequest)                           /* Swagger create data: response bad request */
-    @ApiInternalServerErrorResponse(CreateClassInternalServerError)         /* Swagger create data: response internal server error */
+    @ApiOperation(CreateClassDescription)                                       /* Swagger create data: operation */
+    @ApiBody({schema: CreateClassRequestBody})                                  /* Swagger create data: body */
+    @ApiOkResponse(CreateClassSuccess)                                          /* Swagger create data: response success */
+    @ApiNotFoundResponse(CreateClassNotFound)                                   /* Swagger create data: response not found */
+    @ApiBadRequestResponse(CreateClassBadRequest)                               /* Swagger create data: response bad request */
+    @ApiInternalServerErrorResponse(CreateClassInternalServerError)             /* Swagger create data: response internal server error */
     @UsePipes(ValidationPipe)
     async createData(@Body() createClassDto: CreateClassDto, @Res() res: Response) {
         const responseData = await this.classesService.createData(createClassDto)
@@ -63,24 +64,24 @@ export class ClassesController {
     }
 
     @Delete("/:id")
-    @ApiOperation(DeleteClassDescription)                                   /* Swagger delete data: operation */
-    @ApiParam(DeleteClassParam)                                             /* Swagger delete data: param */
-    @ApiOkResponse(DeleteClassSuccess)                                      /* Swagger delete data: response success */
-    @ApiNotFoundResponse(DeleteClassNotFound)                               /* Swagger delete data: response not found */
-    @ApiInternalServerErrorResponse(DeleteClassInternalServerError)         /* Swagger delete data: response internal server error */
+    @ApiOperation(DeleteClassDescription)                                       /* Swagger delete data: operation */
+    @ApiParam(DeleteClassParam)                                                 /* Swagger delete data: param */
+    @ApiOkResponse(DeleteClassSuccess)                                          /* Swagger delete data: response success */
+    @ApiNotFoundResponse(DeleteClassNotFound)                                   /* Swagger delete data: response not found */
+    @ApiInternalServerErrorResponse(DeleteClassInternalServerError)             /* Swagger delete data: response internal server error */
     async deleteData(@Param("id") id: string, @Res() res: Response) {
         await this.classesService.deleteData(id)
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, `Success delete class data with class_id:: ${id}`, null))
     }
 
     @Put("/:id")
-    @ApiOperation(UpdateClassDescription)                                   /* Swagger update data: operation */
-    @ApiParam(UpdateClassParam)                                             /* Swagger update data: param */
-    @ApiBody({schema: UpdateClassRequestBody})                              /* Swagger update data: body */
-    @ApiOkResponse(UpdateClassSuccess)                                      /* Swagger update data: response success */
-    @ApiBadRequestResponse(UpdateClassBadRequest)                           /* Swagger update data: response bad request */
-    @ApiNotFoundResponse(UpdateClassNotFound)                               /* Swagger update data: response not found */
-    @ApiInternalServerErrorResponse(UpdateClassInternalServerError)         /* Swagger update data: response internal server error */
+    @ApiOperation(UpdateClassDescription)                                       /* Swagger update data: operation */
+    @ApiParam(UpdateClassParam)                                                 /* Swagger update data: param */
+    @ApiBody({schema: UpdateClassRequestBody})                                  /* Swagger update data: body */
+    @ApiOkResponse(UpdateClassSuccess)                                          /* Swagger update data: response success */
+    @ApiBadRequestResponse(UpdateClassBadRequest)                               /* Swagger update data: response bad request */
+    @ApiNotFoundResponse(UpdateClassNotFound)                                   /* Swagger update data: response not found */
+    @ApiInternalServerErrorResponse(UpdateClassInternalServerError)             /* Swagger update data: response internal server error */
     @UsePipes(ValidationPipe)
     async updateData(@Param("id") id: string, @Body() updateClassDto: UpdateClassDto, @Res() res: Response) {
         const responseData = await this.classesService.updateData(id, updateClassDto)
@@ -88,11 +89,11 @@ export class ClassesController {
     }
 
     @Put("/set-active/:id")
-    @ApiOperation(SetActiveClassDescription)                                /* Swagger set active data: operation */
-    @ApiParam(SetActiveClassParam)                                          /* Swagger set active data: param */
-    @ApiOkResponse(SetActiveClassSuccess)                                   /* Swagger set active data: response success */
-    @ApiNotFoundResponse(SetActiveClassNotFound)                            /* Swagger set active data: response not found */
-    @ApiInternalServerErrorResponse(SetActiveClassInternalServerError)      /* Swagger set active data: response internal server error */
+    @ApiOperation(SetActiveClassDescription)                                    /* Swagger set active data: operation */
+    @ApiParam(SetActiveClassParam)                                              /* Swagger set active data: param */
+    @ApiOkResponse(SetActiveClassSuccess)                                       /* Swagger set active data: response success */
+    @ApiNotFoundResponse(SetActiveClassNotFound)                                /* Swagger set active data: response not found */
+    @ApiInternalServerErrorResponse(SetActiveClassInternalServerError)          /* Swagger set active data: response internal server error */
     async setActive(@Param("id") id: string, @Res() res: Response) {
         let newStatus: string = ClassStatusEnum.active
         let responseData: Class = await this.classesService.setStatus(id, newStatus)
@@ -100,11 +101,11 @@ export class ClassesController {
     }
 
     @Put("/set-archived/:id")
-    @ApiOperation(SetArchivedClassDescription)                              /* Swagger set archived data: operation */
-    @ApiParam(SetArchivedClassParam)                                        /* Swagger set archived data: param */
-    @ApiOkResponse(SetArchivedClassSuccess)                                 /* Swagger set archived data: response success */
-    @ApiNotFoundResponse(SetArchivedClassNotFound)                          /* Swagger set archived data: response not found */
-    @ApiInternalServerErrorResponse(SetArchivedClassInternalServerError)    /* Swagger set archived data: response internal server error */
+    @ApiOperation(SetArchivedClassDescription)                                  /* Swagger set archived data: operation */
+    @ApiParam(SetArchivedClassParam)                                            /* Swagger set archived data: param */
+    @ApiOkResponse(SetArchivedClassSuccess)                                     /* Swagger set archived data: response success */
+    @ApiNotFoundResponse(SetArchivedClassNotFound)                              /* Swagger set archived data: response not found */
+    @ApiInternalServerErrorResponse(SetArchivedClassInternalServerError)        /* Swagger set archived data: response internal server error */
     async setArchived(@Param("id") id: string, @Res() res: Response) {
         let newStatus: string = ClassStatusEnum.archived
         let responseData: Class = await this.classesService.setStatus(id, newStatus)
@@ -112,6 +113,11 @@ export class ClassesController {
     }
 
     @Put("/unassigned-teacher/:id")
+    @ApiOperation(UnassignedTeacherClassDescription)                            /* Swagger unassigned teacher data: operation */
+    @ApiParam(UnassignedTeacherClassParam)                                      /* Swagger unassigned teacher data: param */
+    @ApiOkResponse(UnassignedTeacherClassSuccess)                               /* Swagger unassigned teacher data: response success */
+    @ApiNotFoundResponse(UnassignedTeacherClassNotFound)                        /* Swagger unassigned teacher data: response not found */
+    @ApiInternalServerErrorResponse(UnassignedTeacherClassInternalServerError)  /* Swagger unassigned teacher data: response internal server error */
     async setUnassignedTeacher(@Param("id") id: string, @Res() res: Response) {
         let responseData: Class = await this.classesService.unassignedTeacher(id)
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, `Success set unassigned-teacher class data with class_id: ${id}`, responseData))
