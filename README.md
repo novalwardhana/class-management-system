@@ -5,13 +5,7 @@ Backend Class Management System.
 MengajiOnline.com Test
 ```
 
-## Installation
-
-```bash
-$ npm install
-```
-
-## Env & Database
+## Prepare Env & Database
 
 ```bash
 APP_PORT=9000
@@ -23,6 +17,12 @@ DATABASE_USERNAME=noval
 DATABASE_PASSWORD=noval
 DATABASE_SYNChRONIZE=true
 DATABASE_LOGGER=simple-console
+```
+
+## Installation
+
+```bash
+$ npm install
 ```
 
 ## Running the app
