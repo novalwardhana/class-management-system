@@ -8,8 +8,11 @@ import { UpdateClassDto } from './dto/update-class.dto'
 import { ClassStatusEnum } from './entity/class-status-enum.entity'
 import { Class } from './entity/class.entity';
 import { FilterClassDto } from './dto/filter-class.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
+/* Swagger dependencies */
+import { ApiBadRequestResponse, ApiInternalServerErrorResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { GetClassesBadRequest, GetClassesDescription, GetClassesInternalServerError, GetClassesQueryLimit, GetClassesQueryPage, GetClassesSuccess } from './swagger/get-datas.swagger';
+import { GetClassDescription, GetClassInternalServerError, GetClassNotFound, GetClassParam, GetClassSuccess } from './swagger/get-data.swagger';
 
 @Controller('classes')
 @ApiTags('classes')
@@ -19,15 +22,26 @@ export class ClassesController {
 
     @Get()
     @UsePipes(ValidationPipe)
+    @ApiOperation(GetClassesDescription)                                    /* Swagger get datas: operation */
+    @ApiQuery(GetClassesQueryPage)                                          /* Swagger get datas: query page */
+    @ApiQuery(GetClassesQueryLimit)                                         /* Swagger get datas: query limit */
+    @ApiOkResponse(GetClassesSuccess)                                       /* Swagger get datas: response success */
+    @ApiBadRequestResponse(GetClassesBadRequest)                            /* Swagger get datas: response bad request */
+    @ApiInternalServerErrorResponse(GetClassesInternalServerError)          /* Swagger get datas: response internal server error */
     async getDatas(@Query() filterClassDto: FilterClassDto, @Res() res: Response) {
         const responseData = await this.classesService.getDatas(filterClassDto)
-        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
+        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success get classes data", responseData))
     }
 
     @Get("/:id")
+    @ApiOperation(GetClassDescription)                                      /* Swagger get data: operation */
+    @ApiParam(GetClassParam)                                                /* Swagger get data: param */
+    @ApiOkResponse(GetClassSuccess)                                         /* Swagger get data: response success */
+    @ApiNotFoundResponse(GetClassNotFound)                                  /* Swagger get data: response not found */
+    @ApiInternalServerErrorResponse(GetClassInternalServerError)            /* Swagger get data: response internal server error */
     async getData(@Param("id") id: string, @Res() res: Response) {
         const responseData = await this.classesService.getData(id)
-        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
+        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success get class data", responseData))
     }
 
     @Post()
@@ -74,7 +88,7 @@ export class ClassesController {
                 break
             }
             default: {
-                throw new ErrorResponse("set class status is not valid")
+                throw new ErrorResponse(HttpStatus.BAD_REQUEST, "set class status is not valid")
             }
         }
 

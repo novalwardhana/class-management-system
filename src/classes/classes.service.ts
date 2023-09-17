@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import * as moment from "moment";
 import { ClassRepository } from './repository/class.repository';
 import { TeacherRepository } from '../teachers/repository/teacher.repository';
@@ -38,7 +38,7 @@ export class ClassesService {
                 data: classDatas
             }
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            throw new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.message)
         }
     }
 
@@ -46,11 +46,15 @@ export class ClassesService {
         try {
             const data = await this.classRepository.findOneBy({'class_id': id})
             if (!data) {
-                throw new ErrorResponse("Data not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Class data with class_id: ${id} is not found`)
             }
             return data
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            let statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+            if (e.status) {
+                statusCode = e.status
+            }
+            throw new ErrorResponse(statusCode, e.message)
         }
     }
 
@@ -60,19 +64,19 @@ export class ClassesService {
 
             const teacherData = await this.teacherRepository.findOneBy({'teacher_id': createClassDto.teacher_id})
             if (!teacherData) {
-                throw new ErrorResponse(`Teacher with id: ${createClassDto.teacher_id} is not found`)
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Teacher data with teacher_id: ${createClassDto.teacher_id} is not found`)
             }
 
             const subjectData = await this.subjectRepository.findOneBy({'subject_id': createClassDto.subject_id})
             if (!subjectData) {
-                throw new ErrorResponse(`Subject with id: ${createClassDto.subject_id} is not found`)
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Subject data with subject_id: ${createClassDto.subject_id} is not found`)
             }
 
             const parseStartTime = moment(createClassDto.start_time, "HH:mm")
             const parseEndTime = moment(createClassDto.end_time, "HH:mm")
             const duration = parseEndTime.diff(parseStartTime, "minutes")
             if (duration < 0) {
-                throw new ErrorResponse("Start time and end time is not valid")
+                throw new ErrorResponse(HttpStatus.BAD_REQUEST, "Start time and end time is not valid")
             }
             createClassDto.duration = duration
             
@@ -80,7 +84,11 @@ export class ClassesService {
             return classData
 
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            let statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+            if (e.status) {
+                statusCode = e.status
+            }
+            throw new ErrorResponse(statusCode, e.message)
         }
 
         return null
@@ -90,11 +98,15 @@ export class ClassesService {
         try {
             const data = await this.classRepository.findOneBy({'class_id': id})
             if (!data) {
-                throw new ErrorResponse("Data not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Subject data with subject_id: ${id} is not found`)
             }
             await this.classRepository.delete({class_id: id})
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            let statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+            if (e.status) {
+                statusCode = e.status
+            }
+            throw new ErrorResponse(statusCode, e.message)
         }
     }
 
@@ -104,24 +116,24 @@ export class ClassesService {
 
             const classData = await this.classRepository.findOneBy({'class_id': id})
             if (!classData) {
-                throw new ErrorResponse("Data class not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Class data with class_id: ${id} is not found`)
             }
 
             const teacherData = await this.teacherRepository.findOneBy({'teacher_id': updateClassDto.teacher_id})
             if (!teacherData) {
-                throw new ErrorResponse(`Teacher with id: ${updateClassDto.teacher_id} is not found`)
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Teacher data with teacher_id: ${updateClassDto.teacher_id} is not found`)
             }
 
             const subjectData = await this.subjectRepository.findOneBy({'subject_id': updateClassDto.subject_id})
             if (!subjectData) {
-                throw new ErrorResponse(`Subject with id: ${updateClassDto.subject_id} is not found`)
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Subject data with subject_id: ${updateClassDto.subject_id} is not found`)
             }
 
             const parseStartTime = moment(updateClassDto.start_time, "HH:mm")
             const parseEndTime = moment(updateClassDto.end_time, "HH:mm")
             const timeDuration = parseEndTime.diff(parseStartTime, "minutes")
             if (timeDuration < 0) {
-                throw new ErrorResponse("Start time and end time is not valid")
+                throw new ErrorResponse(HttpStatus.BAD_REQUEST, "Start time and end time is not valid")
             }
             updateClassDto.duration = timeDuration
 
@@ -142,7 +154,11 @@ export class ClassesService {
             await classData.save()
             return classData
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            let statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+            if (e.status) {
+                statusCode = e.status
+            }
+            throw new ErrorResponse(statusCode, e.message)
         }
     }
 
@@ -152,7 +168,7 @@ export class ClassesService {
 
             const classData = await this.classRepository.findOneBy({'class_id': id})
             if (!classData) {
-                throw new ErrorResponse("Data class not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Class data with class_id: ${id} is not found`)
             }
             classData.status = status
 
@@ -160,7 +176,11 @@ export class ClassesService {
             return classData
 
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            let statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+            if (e.status) {
+                statusCode = e.status
+            }
+            throw new ErrorResponse(statusCode, e.message)
         }
     }
 
@@ -169,7 +189,7 @@ export class ClassesService {
 
             const classData = await this.classRepository.findOneBy({'class_id': id})
             if (!classData) {
-                throw new ErrorResponse("Data class not found")
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Class data with class_id: ${id} is not found`)
             }
             classData.teacher = null
             classData.reference_teacher_id = null
@@ -178,7 +198,11 @@ export class ClassesService {
             return classData
 
         } catch(e) {
-            throw new ErrorResponse(e.message)
+            let statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+            if (e.status) {
+                statusCode = e.status
+            }
+            throw new ErrorResponse(statusCode, e.message)
         }
     }
 }   

@@ -1,4 +1,4 @@
-export const GetTeacherDescription = {description: "Get data by teacher id"}
+export const GetTeacherDescription = {description: "Get data by teacher_id"}
 export const GetTeacherParam = { name: 'id', type: 'string', example: 'ae167e22-7696-4271-a495-0fb65b4d05ec'}
 
 export const GetTeacherSuccess = {
