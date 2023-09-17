@@ -59,7 +59,7 @@ Swaggerhub: https://app.swaggerhub.com/apis-docs/novalwardhana/mo-be-class-manag
 
 ## Modules Created
 ```bash
-1. Teachers: CRUD Class
-2. Subjects: CRUD Teacher
-3. Classes: Assign and unassign teachers to be assigned to specified classes and fill in the subjects
+1. Teachers: module to manage teachers data such as create, read, update, and delete
+2. Subjects: module to manage subjects data such as create, read, update, and delete
+3. Classes: 
 ```
