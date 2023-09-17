@@ -10,9 +10,11 @@ import { Class } from './entity/class.entity';
 import { FilterClassDto } from './dto/filter-class.dto';
 
 /* Swagger dependencies */
-import { ApiBadRequestResponse, ApiInternalServerErrorResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiBadRequestResponse, ApiBody, ApiInternalServerErrorResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { GetClassesBadRequest, GetClassesDescription, GetClassesInternalServerError, GetClassesQueryLimit, GetClassesQueryPage, GetClassesSuccess } from './swagger/get-datas.swagger';
 import { GetClassDescription, GetClassInternalServerError, GetClassNotFound, GetClassParam, GetClassSuccess } from './swagger/get-data.swagger';
+import { CreateClassBadRequest, CreateClassDescription, CreateClassInternalServerError, CreateClassNotFound, CreateClassRequestBody, CreateClassSuccess } from './swagger/create-data.swagger';
+import { DeleteClassDescription, DeleteClassInternalServerError, DeleteClassNotFound, DeleteClassParam, DeleteClassSuccess } from './swagger/delete-data.swagger';
 
 @Controller('classes')
 @ApiTags('classes')
@@ -45,6 +47,12 @@ export class ClassesController {
     }
 
     @Post()
+    @ApiOperation(CreateClassDescription)                                   /* Swagger create data: operation */
+    @ApiBody({schema: CreateClassRequestBody})                              /* Swagger create data: body */
+    @ApiOkResponse(CreateClassSuccess)                                      /* Swagger create data: response success */
+    @ApiNotFoundResponse(CreateClassNotFound)                               /* Swagger create data: response not found */
+    @ApiBadRequestResponse(CreateClassBadRequest)                           /* Swagger create data: response bad request */
+    @ApiInternalServerErrorResponse(CreateClassInternalServerError)         /* Swagger create data: response internal server error */
     @UsePipes(ValidationPipe)
     async createData(@Body() createClassDto: CreateClassDto, @Res() res: Response) {
         const responseData = await this.classesService.createData(createClassDto)
@@ -52,9 +60,14 @@ export class ClassesController {
     }
 
     @Delete("/:id")
+    @ApiOperation(DeleteClassDescription)                                   /* Swagger delete data: operation */
+    @ApiParam(DeleteClassParam)                                             /* Swagger delete data: param */
+    @ApiOkResponse(DeleteClassSuccess)                                      /* Swagger delete data: response success */
+    @ApiNotFoundResponse(DeleteClassNotFound)                               /* Swagger delete data: response not found */
+    @ApiInternalServerErrorResponse(DeleteClassInternalServerError)         /* Swagger delete data: response internal server error */
     async deleteData(@Param("id") id: string, @Res() res: Response) {
         await this.classesService.deleteData(id)
-        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, `Success delete class data with uuid: ${id}`, null))
+        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, `Success delete class data with class_id:: ${id}`, null))
     }
 
     @Put("/:id")

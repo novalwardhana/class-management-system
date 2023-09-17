@@ -98,7 +98,7 @@ export class ClassesService {
         try {
             const data = await this.classRepository.findOneBy({'class_id': id})
             if (!data) {
-                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Subject data with subject_id: ${id} is not found`)
+                throw new ErrorResponse(HttpStatus.NOT_FOUND, `Class data with class_id: ${id} is not found`)
             }
             await this.classRepository.delete({class_id: id})
         } catch(e) {
