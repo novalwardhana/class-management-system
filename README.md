@@ -52,8 +52,10 @@ $ npm run test:cov
 ```
 
 ## Documentation API
-
-Swagger : http://localhost:9000/docs
+```bash
+Swagger local: http://localhost:9000/docs
+Swaggerhub: https://app.swaggerhub.com/apis-docs/novalwardhana/mo-be-class-management-system-api/1.0
+```
 
 ## Modules Created
 
