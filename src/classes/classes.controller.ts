@@ -111,35 +111,10 @@ export class ClassesController {
         res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, `Success set archived class data with class_id: ${id}`, responseData))
     }
 
-    @Put("/:status/:id")
-    async setStatus(@Param("status") status: string, @Param("id") id: string, @Res() res: Response) {
-        
-        let newStatus: string
-        let responseData: Class
-        switch (status) {
-            case "set-active": 
-            {
-                newStatus = ClassStatusEnum.active
-                responseData = await this.classesService.setStatus(id, newStatus)
-                break
-            }
-            case "set-archived": 
-            {
-                newStatus = ClassStatusEnum.archived
-                responseData = await this.classesService.setStatus(id, newStatus)
-                break
-            }
-            case "unassigned-teacher": 
-            {
-                responseData = await this.classesService.unassignedTeacher(id)
-                break
-            }
-            default: {
-                throw new ErrorResponse(HttpStatus.BAD_REQUEST, "set class status is not valid")
-            }
-        }
-
-        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, "Success", responseData))
+    @Put("/unassigned-teacher/:id")
+    async setUnassignedTeacher(@Param("id") id: string, @Res() res: Response) {
+        let responseData: Class = await this.classesService.unassignedTeacher(id)
+        res.status(HttpStatus.OK).json(new SuccessResponse(HttpStatus.OK, `Success set unassigned-teacher class data with class_id: ${id}`, responseData))
     }
 
 }
