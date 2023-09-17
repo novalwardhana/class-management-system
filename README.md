@@ -58,7 +58,8 @@ Swaggerhub: https://app.swaggerhub.com/apis-docs/novalwardhana/mo-be-class-manag
 ```
 
 ## Modules Created
-
-1. Teachers: CRUD Class.
-2. Subjects: CRUD Teacher.
-3. Classes: Assign and unassign teachers to be assigned to specified classes and fill in the subjects.
+```bash
+1. Teachers: CRUD Class
+2. Subjects: CRUD Teacher
+3. Classes: Assign and unassign teachers to be assigned to specified classes and fill in the subjects
+```
