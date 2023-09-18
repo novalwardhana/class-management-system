@@ -5,7 +5,13 @@ Backend Class Management System.
 MengajiOnline.com Test
 ```
 
-## Prepare Env & Database
+## Prepare Database
+
+```bash
+MongoDB Database: https://github.com/novalwardhana/class-management-system/blob/master/class_management_system.zip
+```
+
+## Prepare Env
 
 ```bash
 APP_PORT=9000
