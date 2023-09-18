@@ -57,7 +57,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Documentation API
+## API Documentation
 ```bash
 Swagger local: http://localhost:9000/docs
 Swaggerhub: https://app.swaggerhub.com/apis-docs/novalwardhana/mo-be-class-management-system-api/1.0
