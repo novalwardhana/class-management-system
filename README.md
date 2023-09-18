@@ -68,5 +68,10 @@ Postman: https://github.com/novalwardhana/class-management-system/blob/master/mo
 ```bash
 1. Teachers: module to manage teachers data such as create, read, update, and delete
 2. Subjects: module to manage subjects data such as create, read, update, and delete
-3. Classes: 
+3. Classes:
+    a. module to manage classes data such as create, read, update, delete
+    b. list of classes with assigned or unassigned teachers
+    c. set the date and time and duration of a class
+    c. update to assign and reassign a teacher and a subject to a class
+    e. set active, archived or delete a class
 ```
